@@ -43,7 +43,7 @@ function Game(){
     Crossroads();
     
     function Crossroads(){
-        var crossRoads = prompt("You wake up in the middle of an intersection, with no idea how you got there. Unable to see through your blurred eyes you wait until your vision clears. \n -Look around \n - Walk in a direction N,S,E,W").toLowerCase();
+        var crossRoads = prompt("You wake up in the middle of an intersection, with no idea how you got there. Unable to see through your blurred eyes you wait until your vision clears. \n Look around \n Walk in a direction N,S,E,W").toLowerCase();
 
         CrossRLook();
         
@@ -147,13 +147,171 @@ function Game(){
         }
     }
     function Wroad2(){
-        var roadW2 = prompt("You resume walking for a while. \n N,S,E,W \n Look around");
+        var roadW2 = prompt("You resume walking for a while. \n N,S,E,W \n Look around").toLowerCase();
         if(roadW2 == "look" || roadW2 == "look around"){
-            var roadW2Look = prompt("You can now barely see the flying city in the distance, the castle is now huge, and the city and ruins are farther away than before.");
+            alert("You can now barely see the flying city in the distance, the castle is now huge, and the city and ruins are farther away than before.");
+            Wroad2();
+        }
+        else if(roadW2 == "n" || roadW2 == "walk n"){
+            alert("Incomplete area");
+            Wroad2();
+        }
+        else if(roadW2 == "w" || roadW2 == "walk w"){
+            Wroad3();
+        }
+        else if(roadW2 == "s" || roadW2 == "walk s"){
+            alert("Incomplete area");
+            Wroad2();
+        }
+        else if(roadW2 == "e" || roadW2 == "walk e"){
+            Wroad1();
         }
     }
     function Wroad3(){
-
+        var roadW3 = prompt("You are now just outside the castle, the other cities are no longer visable. \n N,S,E,W \n Look").toLowerCase();
+        switch(roadW3){
+            case "n" || "walk n":
+                alert("Incomplete area");
+                Wroad3();
+            break;
+            case "s" || "walk s":
+                alert("Incomplete area");
+                Wroad3();
+            break;
+            case "e" || "walk e":
+                Wroad2();
+            break;
+            case "w" || "walk w":
+                CastleGateE();
+            break;
+            case "look" || "look around":
+                alert("There isn't much around besides forest and the pathway that you are on.");
+                Wroad3();
+            break;
+            default:
+                alert("Please stick to the options given.");
+                Wroad3();
+        }
+    }
+    function CastleGateE(){
+        var castleEGate = prompt("Walking through the giant gates you can see past the castle walls, and into the giant forest to the east. \n E,W \n Look around").toLowerCase();
+        switch(underEGate){
+            case "n" || "walk n":
+                alert("There is a wall there.");
+                CastleGateE();
+            break;
+            case "s" || "walk s":
+                alert("There is a wall there.");
+                CastleGateE();
+            break;
+            case "w" || "walk w":
+                KeepPathE();
+            break;
+            case "e" || "walk e":
+                Wroad3();
+            break;
+            case "look" || "look around":
+                var castleEGateLook = prompt("You notice some stairs in the corner that you could climb up. \n Climb stairs \n Ignore").toLowerCase();
+                if(castleEGateLook == "climb" || "climb stairs"){
+                    var aboveEGate = prompt("Now on top of the East gate you notice you can actually see the ruins and city vary distantly in the east. \n N,S \n Climb down");
+                    if(aboveEGate == "climb down" || aboveEGate == "down"){
+                        CastleGateE();
+                    }
+                    else if(aboveEGate == "n" || aboveEGate == "walk n"){
+                        Wall1NE();
+                    }
+                    else if(aboveEGate == "s" || aboveEGate == "walk s"){
+                        Wall1SE();
+                    }
+                    else{
+                        alert("You slipped back down to the gate.");
+                        CastleGateE();
+                    }
+                }
+                else{
+                    CastleGateE();
+                }
+            default:
+                alert("I've been giving you options you know");
+            break;
+        }
+    }
+    function KeepPathE(){
+        var ePathKeep = prompt("Walking into the castle you can see it is MASSIVE. \n Look around \n N,S,E,W").toLowerCase();
+        switch(ePathKeep){
+            case "w" || "walk w":
+                Keep();
+            break;
+            case "n" || "walk n":
+                StablesNE1();
+            break;
+            case "s" || "walk s":
+                GuardHouse1();
+            break;
+            case "e" || "walk e":
+                CastleGateE();
+            break;
+            case "look" || "look around":
+                var eKeepPathLook = prompt("You see the giant keep in the center, stables north of you, some houses south of you, and the exit behind you. \n N,S,E,W");
+                switch(eKeepPathLook){
+                    case "w" || "walk w":
+                        Keep();
+                    break;
+                    case "n" || "walk n":
+                        StablesNE1();
+                    break;
+                    case "s" || "walk s":
+                        GuardHouse1();
+                    break;
+                    case "e" || "walk e":
+                        CastleGateE();
+                    break;
+                    default:
+                        KeepPathE();
+                    break;
+                }
+            break;
+            default:
+                alert("Please use a given option.");
+                KeepPathE();
+            break;
+        }
+    }
+    function Keep(){
+        var insideKeep = prompt("You walk into a large entryway with multiple passages. \n Upstairs \n West tower \n Look \n Leave").toLowerCase();
+        switch(insideKeep){
+            case "upstairs" || "go upstairs":
+                var keepUpstairs = prompt("You climb the stairs until you arrive at a doorway. \n Enter \n Go back down").toLowerCase();
+                if(keepUpstairs == "enter" || keepUpstairs == "enter doorway"){
+                    KeepThrone();
+                }
+                else if(keepUpstairs == "down" || keepUpstairs == "go down"){
+                    Keep();
+                }
+                else{
+                    Keep();
+                }
+            break;
+            case "west tower" || "go to west tower":
+                var westtower = prompt("You walk to the west tower. \n Upstairs \n East tower \n Look \n Leave").toLowerCase();
+            break;
+            case "leave":
+                KeepPathE();
+            break;
+            case "look" || "look around":
+                var keepLook = prompt("You look around and only notice a Smith in one of the corners \n Buy \n Keep").toLowerCase();
+                if(keepLook == "buy"){
+                    KeepSmith();
+                }
+                else{
+                    Keep();
+                }
+            break;
+            default:
+                alert("Type an option thats given please.");
+                Keep();
+            break;
+        }
     }
     function KeepSmith(){
         alert("The Blacksmith looks over at you, scowls and the slowly walks over to see what you want.");
