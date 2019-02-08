@@ -30,15 +30,20 @@ var enemy = {
     attack:10,
     armor_rating:0,
 }
+var keepSetting = {
+    metNobles = 0
+}
 
 Game();
 
 function Game(){
     
+    var worldNames = ["Flehr","Flahr","Flohr"]
+
     document.write("This game is a WIP, it is imcomplete, so please be understanding if there are areas or commands that do not work.");
     alert("At the moment the Castle area is the only area that is coded, so go in the other directions at your own risk.")
     var playerName = prompt("What is your name?");
-    alert("Welcome to the game "+playerName);
+    alert("Welcome to "+worldNames[Math.floor(Math.random() * 3)]+" "+playerName+".");
     
     Crossroads();
     
@@ -50,7 +55,7 @@ function Game(){
         function CrossRLook(){
             if( crossRoads == "look" || crossRoads == "look around"){
                 //document.write(".\n The stuff works ok?")
-                var crossRoadsLook = prompt("You notice there is a note beside you, a sign in the middle of the road, and in the distance there is a familiar city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign \n Crossroad").toLowerCase();
+                var crossRoadsLook = prompt("You notice there is a note beside you, a sign in the middle of the road, and in the distance there is a familiar city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
              
                 if( crossRoadsLook == "read note"){
                     alert("You did this to yourself "+playerName+" enjoy your new life. And don't bother trying to come back, you can't. \n - X");
@@ -71,9 +76,9 @@ function Game(){
                             CrossRLook();
                         }
                     }
-                    else if( crossRoadsLook == "crossroad"){
-                        Crossroads();
-                    }
+                }
+                else{
+                    Crossroads();
                 }
             }
             else if( crossRoads == "walk n" || crossRoads == "n"){
@@ -84,15 +89,15 @@ function Game(){
             }
             else if( crossRoads == "walk s" || crossRoads == "s"){
                 alert("Incomplete area.");
-                CrossRLook();
+                Crossroads();
             }
             else if( crossRoads == "walk e" || crossRoads == "e"){
                 alert("Incomplete area.");
-                CrossRLook();
+                Crossroads();
             }
             else{
                 alert("Aight, type a command thats given.");
-                CrossRLook();
+                Crossroads();
             }
         } 
     }
@@ -147,7 +152,7 @@ function Game(){
         }
     }
     function Wroad2(){
-        var roadW2 = prompt("You resume walking for a while. \n N,S,E,W \n Look around").toLowerCase();
+        var roadW2 = prompt("You resume walking for a while. You are starting to see the true size of the casle now. \n N,S,E,W \n Look around").toLowerCase();
         if(roadW2 == "look" || roadW2 == "look around"){
             alert("You can now barely see the flying city in the distance, the castle is now huge, and the city and ruins are farther away than before.");
             Wroad2();
@@ -195,7 +200,7 @@ function Game(){
     }
     function CastleGateE(){
         var castleEGate = prompt("Walking through the giant gates you can see past the castle walls, and into the giant forest to the east. \n E,W \n Look around").toLowerCase();
-        switch(underEGate){
+        switch(castleEGate){
             case "n" || "walk n":
                 alert("There is a wall there.");
                 CastleGateE();
@@ -237,7 +242,7 @@ function Game(){
         }
     }
     function KeepPathE(){
-        var ePathKeep = prompt("Walking into the castle you can see it is MASSIVE. \n Look around \n N,S,E,W").toLowerCase();
+        var ePathKeep = prompt("Walking into the castle you can see it is even bigger than you had fist thought. \n Look around \n N,S,E,W").toLowerCase();
         switch(ePathKeep){
             case "w" || "walk w":
                 Keep();
@@ -255,6 +260,7 @@ function Game(){
                 var eKeepPathLook = prompt("You see the giant keep in the center, stables north of you, some houses south of you, and the exit behind you. \n N,S,E,W");
                 switch(eKeepPathLook){
                     case "w" || "walk w":
+                        alert("You enter the Keep.");
                         Keep();
                     break;
                     case "n" || "walk n":
@@ -283,7 +289,12 @@ function Game(){
             case "upstairs" || "go upstairs":
                 var keepUpstairs = prompt("You climb the stairs until you arrive at a doorway. \n Enter \n Go back down").toLowerCase();
                 if(keepUpstairs == "enter" || keepUpstairs == "enter doorway"){
-                    KeepThrone();
+                    if(metNobles == 1){
+                        Keepthrone();
+                    }
+                    else{
+                        KeepThrone1();
+                    }
                 }
                 else if(keepUpstairs == "down" || keepUpstairs == "go down"){
                     Keep();
@@ -316,7 +327,7 @@ function Game(){
     function KeepSmith(){
         alert("The Blacksmith looks over at you, scowls and the slowly walks over to see what you want.");
             var keepSmith = prompt("What would you like to buy? \n Bow \n Armor \n Leave").toLowerCase();
-                if( keepSmith == "weapon"){
+                if( keepSmith == "bow" || keepSmith == "buy bow"){
                     var weaponBuy = confirm("Are you sure you want to buy this Bow?");
                         if(weaponBuy){
                             inventory.weapon ++;
@@ -329,6 +340,45 @@ function Game(){
                             KeepSmith();
                         }
                 }
+                else if(keepSmith == "armor" || keepSmith == "buy armor"){
+                    var weaponBuy = confirm("Are you sure you want to buy this Armor?");
+                        if(weaponBuy){
+                            inventory.armor ++;
+                            alert("You now have "+inventory.armor+" sets of armor!");
+                            inventory.coins = inventory.coins - 20;
+                            alert("You now have "+inventory.coins+" coins left.");
+                            KeepSmith();
+                        }
+                }
+                else if(keepSmith == "leave"){
+                    Keep();
+                }
+                else{
+                    Keep();
+                }
+    }
+    function KeepThrone1(){
+        var throneRoom = prompt("You walk into the throne room, and realize instantly that you barged right into the middle of a meeting. The group of five nobles is staring at you from around their map table, clearly annoyed. \n Greet them \n Apologize and leave").toLowerCase();
+        switch(throneRoom){
+            case "greet them" || "greet":
+                MeetKeepNobles();
+            break;
+            case "apologize and leave" || "leave" || "apologize":
+                Keep();
+            break;
+            default:
+                alert("You panicked and ran all the way out of the keep.");
+                KeepPathE();
+            break;
+        }
+    }
+    function Keepthrone(){
+
+    }
+    function MeetKeepNobles(){
+        keepSetting.metNobles ++;
+        alert("You walk in, and join their cirlce standing around the map table, with them still staring at you. One of the nobles shakes off his suprise and asks, 'And who might you be?', you respond saying, 'I go by "+playerName+", who might all of you be?'");
+
     }
 
 }
