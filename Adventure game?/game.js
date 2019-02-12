@@ -31,23 +31,27 @@ var enemy = {
     armor_rating:0,
 }
 var keepSetting = {
-    metNobles = 0
+    metNobles:0,
 }
 
 Game();
 
 function Game(){
     
+    const worldName = [Math.floor(Math.random() * 3)]
+    
     var worldNames = ["Flehr","Flahr","Flohr"]
 
     document.write("This game is a WIP, it is imcomplete, so please be understanding if there are areas or commands that do not work.");
     alert("At the moment the Castle area is the only area that is coded, so go in the other directions at your own risk.")
     var playerName = prompt("What is your name?");
-    alert("Welcome to "+worldNames[Math.floor(Math.random() * 3)]+" "+playerName+".");
+    alert("Welcome to "+worldNames[worldName]+" "+playerName+".");
     
     Crossroads();
     
     function Crossroads(){
+        // This function is a complete mess of code, the rest are more organized.
+        
         var crossRoads = prompt("You wake up in the middle of an intersection, with no idea how you got there. Unable to see through your blurred eyes you wait until your vision clears. \n Look around \n Walk in a direction N,S,E,W").toLowerCase();
 
         CrossRLook();
@@ -283,6 +287,37 @@ function Game(){
             break;
         }
     }
+    function GuardHouse1(){
+        var firstGuardHouse = prompt("You step into the guardhouse see rows of bunks, but no guards are inside. \n Look around \n Leave").toLowerCase();
+        switch(firstGuardHouse){
+            case "leave":
+                KeepPathE();
+            break;
+            case "look" || "look around":
+                var guardHouseLook = prompt("You notice a bow on the wall, a door on the other side, and that there actually is a guard sleeping on one of the beds. \n Take bow \n Open the door \n Wake guard").toLowerCase();
+                switch(guardHouseLook){
+                    case "take bow" || "bow":
+                        inventory.weapon ++;
+                        alert("You take the bow and dash back outside before the guard can notice.");
+                        alert("You now have "+inventory.weapon+" weapons.");
+                        KeepPathE();
+                    break;
+                    case "open the door" || "open door" || "door":
+                        alert("You step outside and into the middle of some houses.");
+                        CastleHousing1();
+                    break;
+                    case "wake guard" || "wake the guard":
+                        alert("The guard opens his eyes, sits up, and stares at you, 'Can't just let a man get in some sleep can you boss?', and flops back down onto the bed.");
+                        alert("Cunfused you walk back outside.");
+                        KeepPathE();
+                    break;
+                    default:
+                        GuardHouse1();
+                    break;
+                }
+            break;
+        }
+    }
     function Keep(){
         var insideKeep = prompt("You walk into a large entryway with multiple passages. \n Upstairs \n West tower \n Look \n Leave").toLowerCase();
         switch(insideKeep){
@@ -378,7 +413,8 @@ function Game(){
     function MeetKeepNobles(){
         keepSetting.metNobles ++;
         alert("You walk in, and join their cirlce standing around the map table, with them still staring at you. One of the nobles shakes off his suprise and asks, 'And who might you be?', you respond saying, 'I go by "+playerName+", who might all of you be?'");
-
+        alert("'What might your business be here in the Castle of "+worldNames[worldName]+" be?' One noble asks, but another steps in 'Sorry about Klein he isn't very friendly to strangers such as yourself barging into our meetings'");
+        
     }
 
 }
