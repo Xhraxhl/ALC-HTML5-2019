@@ -30,9 +30,13 @@ var enemy = {
     attack:10,
     armor_rating:0,
 }
-var keepSetting = {
+var castleSettings = {
     metNobles:0,
+    questionAsked:0,
+    hasHouse:0,
 }
+
+
 
 Game();
 
@@ -59,7 +63,7 @@ function Game(){
         function CrossRLook(){
             if( crossRoads == "look" || crossRoads == "look around"){
                 //document.write(".\n The stuff works ok?")
-                var crossRoadsLook = prompt("You notice there is a note beside you, a sign in the middle of the road, and in the distance there is a familiar city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
+                var crossRoadsLook = prompt("You notice that your are in military fatigues, with a note in a pocket, there is a sign in the middle of the road, and in the distance there is a familiar looking city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
              
                 if( crossRoadsLook == "read note"){
                     alert("You did this to yourself "+playerName+" enjoy your new life. And don't bother trying to come back, you can't. \n - X");
@@ -316,6 +320,17 @@ function Game(){
                     break;
                 }
             break;
+            default:
+                GuardHouse1();
+            break;
+        }
+    }
+    function CastleHousing1(){
+        if(castleSettings.hasHouse == 1){
+            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W \n Enter house");
+        }
+        else{
+            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W");
         }
     }
     function Keep(){
@@ -411,10 +426,52 @@ function Game(){
 
     }
     function MeetKeepNobles(){
-        keepSetting.metNobles ++;
+        castleSettings.metNobles ++;
         alert("You walk in, and join their cirlce standing around the map table, with them still staring at you. One of the nobles shakes off his suprise and asks, 'And who might you be?', you respond saying, 'I go by "+playerName+", who might all of you be?'");
-        alert("'What might your business be here in the Castle of "+worldNames[worldName]+" be?' One noble asks, but another steps in 'Sorry about Klein he isn't very friendly to strangers such as yourself barging into our meetings'");
-        
+        alert("'What might your business be here in the Castle of "+worldNames[worldName]+" be?' One noble asks, but another, friendlier looking noble steps in 'Sorry about Klein he isn't very friendly to strangers such as yourself barging into our meetings, I am Reighn the master of the Keep.'");
+        var nobleQuestions1 = prompt("'Could we ask where you got your fine armor?' Reighn asks. \n You look down realizing that your military fatigues had somehow morphed into a quite expensive looking suit of armor. \n Tell truth \n Make up story").toLowerCase();
+        switch(nobleQuestions1){
+            case "tell truth" || "truth":
+                NobleTruths();
+            break;
+            case "make up story" || "story":
+                NobleLies();
+            break;
+            default:
+                alert("Could you maybe, kinda, just, possibly, use one of the options I just gave you?");
+                MeetKeepNobles();
+            break;
+        }
+    }
+    function NobleTruths(){
+        if(castleSettings.questionAsked == 0){    
+            alert("You tell the nobles your story, how you woke up in the middle of a crossroad, and ended up walking into this castle, right into the middle of their meeting.");
+            var nobleTruth = prompt("'So you have no recollection of how you actually got here, and you can walk on the roads? This is the biggest breakthrough since the last traveler that showed up here!' \n Traveler? \n Go on").toLowerCase();
+            switch(nobleTruth){
+                case "traveler?" || "traveler":
+                    alert("'So you haven't heard of what you are? A traveler, is one who is not from our realm of "+worldNames[worldName]+", is one who can walk the roads, and is not held in by the borders of the settlements. There used to be many of you, but we haven't heard from any travelers in over 200 years. At the moment you're the only living traveler we have heard of.'");
+                    castleSettings.questionAsked ++;
+                    NobleTruths();
+                break;
+                case "go on":
+                castleSettings.questionAsked ++;
+                NobleTruths(); 
+                break;   
+                default:
+                    alert("RESTARTING FUNCTION BECAUSE YOU CAN'T TYPE IN A COMMAND THAT I GAVE YOU");
+                    NobleTruths();
+                break; 
+            }
+        }
+        else{
+            alert("'You should go make yourself at home, there are some houses behind the south eastern guardhouse. The empty one can be yours. We need to discuss this.' You take the hint to leave, and go straight to your new house.");
+            castleSettings.hasHouse ++;
+            CastlePCHouse();
+        }    
+    }
+    function CastlePCHouse(){
+        alert("Outfitting this would take a looongg while, so I just made it exist for now so I can come back to this \n Sorry");
+        CastleHousing1();
     }
 
 }
