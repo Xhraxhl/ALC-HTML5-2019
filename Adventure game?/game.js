@@ -20,6 +20,9 @@ var inventory = {
     weapon:0,
     food:0,
 }
+var inv = function(){
+    alert("Coins: "+inventory.coins+"\n Weapons: "+inventory.weapon+"\n Food: "+inventory.food);
+}
 var pcStats = {
     life:100,
     attack:0,
@@ -63,19 +66,15 @@ function Game(){
         function CrossRLook(){
             if( crossRoads == "look" || crossRoads == "look around"){
                 //document.write(".\n The stuff works ok?")
-                var crossRoadsLook = prompt("You notice that your are in military fatigues, with a note in a pocket, there is a sign in the middle of the road, and in the distance there is a familiar looking city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
+                var crossRoadsLook = prompt("You notice that your are in military fatigues, with a note in a pocket, you are in the middle of the road next to a sign, and in the distance there is a familiar looking city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
              
                 if( crossRoadsLook == "read note"){
                     alert("You did this to yourself "+playerName+" enjoy your new life. And don't bother trying to come back, you can't. \n - X");
                     CrossRLook();
                 }
                 else if( crossRoadsLook == "read sign"){
-                    var crossSign = prompt("Welcome to x type help to get a command list, you can only access this list from this sign. Or type exit to leave the game. To Resume type exit then hit cancel.").toLowerCase();
-                    if( crossSign == "help" || crossSign == "h"){
-                        alert("command list");
-                        CrossRLook();
-                    }
-                    else if( crossSign == "exit"){
+                    var crossSign = prompt("Welcome to "+worldNames[worldName]+", if you wish to exit the game, type exit to leave the game. To Resume type exit then hit cancel.").toLowerCase();
+                    if( crossSign == "exit"){
                         var exitGame = confirm("Are you sure you wish to exit?");
                         if( exitGame){
                             alert(playerName+" has left the game.");
@@ -327,10 +326,219 @@ function Game(){
     }
     function CastleHousing1(){
         if(castleSettings.hasHouse == 1){
-            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W \n Enter house");
+            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W \n Enter your house").toLowerCase();
+            switch(firstCastleHouses){
+                case "n":
+                    GuardHouse1();
+                break;
+                case "s":
+                    alert("There is a wall there.");
+                    CastleHousing1();
+                break;
+                case "w":
+                    CSFarm2();
+                break;
+                case "e":
+                    alert("You can't climb that wall mate.");
+                    CastleHousing1();
+                break;
+                case "enter house" || "house":
+                    CastlePCHouse();
+                break;
+                default:
+                    alert("You trying to find an easter egg or something?");
+                    CastleHousing1();
+                break;
+            }
         }
         else{
-            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W");
+            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W").toLowerCase();
+            switch(firstCastleHouses){
+                case "n":
+                    GuardHouse1();
+                break;
+                case "s":
+                    alert("There is a wall there.");
+                    CastleHousing1();
+                break;
+                case "w":
+                    CSFarm2();
+                break;
+                case "e":
+                    alert("You can't climb that wall mate.");
+                    CastleHousing1();
+                break;
+                default:
+                    alert("You trying to find an easter egg or something?");
+                    CastleHousing1();
+                break;
+            }
+        }
+    }
+    function CastleStablesE1(){
+        let eastStables1 = prompt("You step into the stables, but realize there are no horses, just empty stalls. \n N,S,E,W \n Look around").toLowerCase();
+        switch(eastStables1){
+            case "look" || "look around":
+
+            break;
+            case "n":
+                KeepPathW();
+            break;
+            case "s":
+                CastleStablesE2();
+            break;
+            case "e":
+                alert("Yeah... Mate theres a freaking wall there.");
+                CastleStablesE1();
+            break;
+            case "w":
+                CSCourtyard1();
+            break;
+            default:
+                alert("I HAVE BEEN GIVING YOU COMMANDS THIS WHOLE FREAKIN TIME");
+                CastleStablesE1();
+            break;
+        }
+    }
+    function CastleStablesE2(){
+
+    }
+    function CSCourtyard1(){
+        let southCourtyard1 = prompt("You are right next to the southwest wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLowerCase();
+        switch(southCourtyard1){
+            case "n":
+                var southYardClimb = confirm("You notice that you might be able to climb up the wall. Do you wish to climb the wall?");
+                if(southYardClimb){
+                    KeepClimb();
+                }
+                else{
+                    CSCourtyard1();
+                }
+            break;
+            case "s":
+                CSFarm1();
+            break;
+            case "e":
+                CSCourtyard2();
+            break;
+            case "w":
+                CastleStablesE1();
+            break;
+            default:
+                alert("Please stop bothering me, as a program I am getting sick of all these weird things you say.");
+                CSCourtyard1();
+            break;
+        }
+    }
+    function CSCourtyard2(){
+        let southCourtyard2 = prompt("You are right next to the southeast wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLocaleLowerCase();
+        switch(southCourtyard2){
+            case "n":
+                alert("You might've just ran into the Keep wall.");
+                CSCourtyard2();
+            break;
+            case "s":
+                CSFarm2();
+            break;
+            case "e":
+                KeepPathE();
+            break;
+            case "w":
+                CSCourtyard1();
+            break;
+            default:
+                alert("Please stop bothering me, just type in the stupid commands");
+                CSCourtyard2();
+            break;
+
+        }
+    }
+    function CSFarm1(){
+        let southFarm1 = prompt("You step into a large area of farmland, across the field you can see the east and south walls. \n N,S,E,W").toLowerCase();
+        switch(southFarm1){
+            case "n":
+                CSCourtyard1();
+            break;
+            case "s":
+                CSFarm3();
+            break;
+            case "e":
+                CSFarm2();
+            break;
+            case "w":
+                CastleStablesE2();
+            break;
+            default:
+                alert("You are getting real annoying with all that nonsense you type in.");
+                CSFarm1();
+            break;
+        }
+    }
+    function CSFarm2(){
+        let southFarm2 = prompt("You step into a large area of farmland, across the field you can see the west and south walls. \n N,S,E,W").toLowerCase();
+        switch(southFarm2){
+            case "n":
+                CSCourtyard2();
+            break;
+            case "s":
+                CSFarm4();
+            break;
+            case "e":
+                CastleHousing1();
+            break;
+            case "w":
+                CSFarm1();
+            break;
+            default:
+                alert("You are getting real annoying with all that nonsense you type in.");
+                CSFarm2();
+            break;
+        }
+    }
+    function CSFarm3(){
+        let southFarm3 = prompt("You step into a large area of farmland, across the field you can see the Keep and the east side of the castle. \n N,S,E,W").toLowerCase();
+        switch(southFarm3){
+            case "n":
+                CSFarm1();
+            break;
+            case "s":
+                alert("You ran right into a wall.");
+                CSFarm3();
+            break;
+            case "e":
+                CSFarm4();
+            break;
+            case "w":
+                alert("Yeah... Thats a wall");
+                CSFarm3();
+            break;
+            default:
+                alert("You are speaking some other language with all that nonsense you type in.");
+                CSFarm3();
+            break;
+        }
+    }
+    function CSFarm4(){
+        let southFarm4 = prompt("You step into a large area of farmland, across the field you can see the Keep and the west side of the castle. \n N,S,E,W").toLowerCase();
+        switch(southFarm4){
+            case "n":
+                CSFarm2();
+            break;
+            case "s":
+                alert("That may or may not have been a wall");
+                CSFarm4();
+            break;
+            case "e":
+                alert("WALLS ARE EVERYWHERE!");
+                CSFarm4();
+            break;
+            case "w":
+                CSFarm3();
+            break;
+            default:
+                alert("You don't even read this do you?");
+                CSFarm4();
+            break;
         }
     }
     function Keep(){
@@ -473,7 +681,6 @@ function Game(){
         alert("Outfitting this would take a looongg while, so I just made it exist for now so I can come back to this \n Sorry");
         CastleHousing1();
     }
-
 }
                 /* old broken function
                 if(crossroads == "look around" || crossroads == "look"){    
