@@ -20,7 +20,12 @@ var inventory = {
     weapon:0,
     food:0,
 }
-
+var inv = function(){
+    alert("Coins: "+inventory.coins+"\n Weapons: "+inventory.weapon+"\n Food: "+inventory.food);
+}
+var exit = function(){
+    GameEND();
+}
 var pcStats = {
     life:100,
     attack:0,
@@ -42,13 +47,6 @@ var castleSettings = {
 Game();
 
 function Game(){
-
-    var inv = function(){
-        alert("Coins: "+inventory.coins+"\n Weapons: "+inventory.weapon+"\n Food: "+inventory.food);
-    }
-    var exit = function(){
-        GameEND();
-    }
     
     const worldName = [Math.floor(Math.random() * 3)]
     
@@ -183,9 +181,6 @@ function Game(){
         else if(roadW2 == "e" || roadW2 == "walk e"){
             Wroad1();
         }
-        else{
-            Wroad2();
-        }
     }
     function Wroad3(){
         var roadW3 = prompt("You are now just outside the castle, the other cities are no longer visable. \n N,S,E,W \n Look").toLowerCase();
@@ -211,7 +206,6 @@ function Game(){
             default:
                 alert("Please stick to the options given.");
                 Wroad3();
-            break;
         }
     }
     function CastleGateE(){
@@ -520,34 +514,6 @@ function Game(){
 
         }
     }
-    function CNCourtyard1(){
-        let northCourtyard1 = prompt("You are at the northwest wall of the keep, you can see farms to the north, and buildings to both the east and west. \n N,S,E,W").toLowerCase();
-        switch(northCourtyard1){
-            case "s":
-                alert("What are you gonna do? \n I mean besides running into the wall.");
-                CNCourtyard1();
-            break;
-            case "w":
-                GuardHouse2();
-            break;
-            case "n":
-                CNFarm1();
-            break;
-            case "e":
-                CNCourtyard2();
-            break;
-            default:
-                alert("How would you feel if you prompted somebody to do things and they did somthing else?");
-                CNCourtyard1();
-            break;
-        }
-    }
-    function CNCourtyard2(){
-        let northCourtyard2 = prompt("You are at the northeast wall of the keep, you can see to the north wall and the buildings to the east and west. \n N,S,E,W").toLowerCase();
-        switch(northCourtyard2){
-            
-        }
-    }
     function CSFarm1(){
         let southFarm1 = prompt("You step into a large area of farmland, across the field you can see the east and south walls. \n N,S,E,W").toLowerCase();
         switch(southFarm1){
@@ -649,7 +615,7 @@ function Game(){
                 CNFarm2();
             break;
             case "w":
-                CastleHousing2();
+                GuardHouse2();
             break;
             default:
                 alert("You are getting real annoying with all that nonsense you type in.");
@@ -679,51 +645,11 @@ function Game(){
         }
     }
     function CNFarm3(){
-        let northFarm3 = prompt("You are in the northwest field and can see the Keep and east wall across the farmland. \n N,E,S,W").toLowerCase();
-        switch(northFarm3){
-            case "n":
-                alert("I got you to run into ANOTHER wall. \n HA");
-                CNFarm3();
-            break;
-            case "s":
-                CNFarm1();
-            break;
-            case "e":
-                CNFarm4();
-            break;
-            case "w":
-                alert("AAAAAND!!!! \n another wall");
-                CNFarm3();
-            break;
-            default:
-                alert("Aren't prompted commands a beautiful thing?");
-                CNFarm3();
-            break;
-        }
 
     }
-    function CNFarm4(){
-        let northFarm4 = prompt("You are in large swath of farmland, across the fields you can see the keep and the west wall. \n N,S,E,W").toLowerCase();
-        switch(northFarm4){
-            case "n":
-                alert("HA \n another wall");
-                CNFarm4();
-            break;
-            case "s":
-                CNFarm2();
-            break;
-            case "e":
-                alert("GUESS WHAT? \n You walked into a wall... again.");
-            break;
-            case "w":
-                CNFarm3();
-            break;
-            default:
-                alert("Hey, listen, Hey listen... \n Don't let them take advantage of your slipstream.");
-                CNFarm4();
-            break;
-        }
-    }
+    function CNFarm4({
+
+    })
     function Keep(){
         var insideKeep = prompt("You walk into a large entryway with multiple passages. \n Upstairs \n West tower \n Look \n Leave").toLowerCase();
         switch(insideKeep){
@@ -816,8 +742,7 @@ function Game(){
         }
     }
     function Keepthrone(){
-        alert("This may or may not be broke");
-        Keep();
+
     }
     function MeetKeepNobles(){
         castleSettings.metNobles ++;
