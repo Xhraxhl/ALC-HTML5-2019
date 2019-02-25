@@ -18,6 +18,7 @@ var inventory = {
     coins:100,
     armor:0,
     weapon:0,
+    arrows:0,
     food:0,
 }
 
@@ -36,7 +37,7 @@ var castleSettings = {
     questionAsked:0,
     hasHouse:0,
 }
-
+var crossroadSettings = 0
 
 
 Game();
@@ -57,67 +58,98 @@ function Game(){
     document.write("This game is a WIP, it is imcomplete, so please be understanding if there are areas or commands that do not work.");
     alert("At the moment the Castle area is the only area that is coded, so go in the other directions at your own risk.")
     var playerName = prompt("What is your name?");
+    while(!confirm("Are you sure you want your name to be "+playerName+"?")){
+        playerName = prompt("Then what do you want your name to be?");
+    }
     alert("Welcome to "+worldNames[worldName]+" "+playerName+".");
     
     Crossroads();
     
     function Crossroads(){
         // This function is a complete mess of code, the rest are more organized.
+        if(crossroadSettings == 1){
+            var crossRoads = prompt("You are at the crossroads between civilizations. \n N,S,E,W").toLowerCase();
+            switch(crossRoads){
+                case "n":
+                    Nroad1();
+                break;
+                case "s":
+                    alert("Thats not finished.");
+                    Crossroads()
+                break;
+                case "w":
+                    Wroad1();
+                break;
+                case "e":
+                    alert("Unfinished area.");
+                    Crossroads();
+                break;
+                default:
+                    Crossroads();
+                break;
+            }
+        }
         
-        var crossRoads = prompt("You wake up in the middle of an intersection, with no idea how you got there. Unable to see through your blurred eyes you wait until your vision clears. \n Look around \n Walk in a direction N,S,E,W").toLowerCase();
+        else{   
+            var crossRoads = prompt("You wake up in the middle of an intersection, with no idea how you got there. Unable to see through your blurred eyes you wait until your vision clears. \n Look around \n Walk in a direction N,S,E,W").toLowerCase();
 
-        CrossRLook();
-        
-        function CrossRLook(){
-            if( crossRoads == "look" || crossRoads == "look around"){
-                //document.write(".\n The stuff works ok?")
-                var crossRoadsLook = prompt("You notice that your are in military fatigues, with a note in a pocket, you are in the middle of the road next to a sign, and in the distance there is a familiar looking city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
-             
-                if( crossRoadsLook == "read note"){
-                    alert("You did this to yourself "+playerName+" enjoy your new life. And don't bother trying to come back, you can't. \n - X");
-                    CrossRLook();
-                }
-                else if( crossRoadsLook == "read sign"){
-                    var crossSign = prompt("Welcome to "+worldNames[worldName]+", if you wish to exit the game, type exit to leave the game. To Resume type exit then hit cancel.").toLowerCase();
-                    if( crossSign == "exit"){
-                        var exitGame = confirm("Are you sure you wish to exit?");
-                        if( exitGame){
-                            GameEND();
-                        }
-                        else{
-                            CrossRLook();
+            crossroadSettings ++;
+
+            CrossRLook();
+
+            function CrossRLook(){
+                if( crossRoads == "look" || crossRoads == "look around"){
+                    //document.write(".\n The stuff works ok?")
+                    var crossRoadsLook = prompt("You notice that your are in military fatigues, with a note in a pocket, you are in the middle of the road next to a sign, and in the distance there is a familiar looking city to the North, a flying city to the East, a land of ruins to the South, and a castle to the West. \n Read note \n Read sign").toLowerCase();
+                
+                    if( crossRoadsLook == "read note"){
+                        alert("You did this to yourself "+playerName+" enjoy your new life. And don't bother trying to come back, you can't. \n - X");
+                        CrossRLook();
+                    }
+                    else if( crossRoadsLook == "read sign"){
+                        var crossSign = prompt("Welcome to "+worldNames[worldName]+", if you wish to exit the game, type exit to leave the game. To Resume type exit then hit cancel.").toLowerCase();
+                        if( crossSign == "exit"){
+                            var exitGame = confirm("Are you sure you wish to exit?");
+                            if( exitGame){
+                                exit();
+                            }
+                            else{
+                                CrossRLook();
+                            }
                         }
                     }
+                    else{
+                        Crossroads();
+                    }
                 }
-                else{
+                else if( crossRoads == "walk n" || crossRoads == "n"){
+                    Nroad1();
+                }
+                else if( crossRoads == "walk w" || crossRoads == "w"){
+                    Wroad1();
+                }
+                else if( crossRoads == "walk s" || crossRoads == "s"){
+                    alert("Incomplete area.");
                     Crossroads();
                 }
-            }
-            else if( crossRoads == "walk n" || crossRoads == "n"){
-                Nroad1();
-            }
-            else if( crossRoads == "walk w" || crossRoads == "w"){
-                Wroad1();
-            }
-            else if( crossRoads == "walk s" || crossRoads == "s"){
-                alert("Incomplete area.");
-                Crossroads();
-            }
-            else if( crossRoads == "walk e" || crossRoads == "e"){
-                alert("Incomplete area.");
-                Crossroads();
-            }
-            else{
-                alert("Aight, type a command thats given.");
-                Crossroads();
-            }
-        } 
+                else if( crossRoads == "walk e" || crossRoads == "e"){
+                    alert("Incomplete area.");
+                    Crossroads();
+                }
+                else{
+                    alert("Aight, type a command thats given.");
+                    Crossroads();
+                }
+            } 
+        }
     }
     function Nroad1(){
-        var roadN1 = prompt("You walk along the road until you are tired and need to rest. The City looks closer than it used to. \n N,S,E,W \n Look around").toLowerCase();
-        if( roadN1 == "look" || roadN1 == "look around"){
-            var roadn1Look = prompt("The City is in the distance, the crossroads are behind you. Though farther away now you can still see the castle to the West, the flying city to the East, and the ruins to the South.  \n N,S,E,W \n Look around")
-        }
+        alert("Thats not finished.");
+        Crossroads();
+        //var roadN1 = prompt("You walk along the road until you are tired and need to rest. The City looks closer than it used to. \n N,S,E,W \n Look around").toLowerCase();
+        //if( roadN1 == "look" || roadN1 == "look around"){
+        //    var roadn1Look = prompt("The City is in the distance, the crossroads are behind you. Though farther away now you can still see the castle to the West, the flying city to the East, and the ruins to the South.  \n N,S,E,W \n Look around")
+        //}
     }
     function Wroad1(){
         var roadW1 = prompt("You walk along the road for a while and then sit down to rest. The Castle looks closer than it used to. \n N,S,E,W \n Look around").toLowerCase();
@@ -385,55 +417,61 @@ function Game(){
         }
     }
     function CastleStablesE1(){
+
+    }
+    function CastleStablesE2(){
+
+    }
+    function CastleStablesW1(){
         let eastStables1 = prompt("You step into the north end of the stables, but realize there are no horses, just empty stalls. \n N,S,E,W \n Look around").toLowerCase();
         switch(eastStables1){
             case "look" || "look around":
                 alert("That path isn't programmed.");
-                CastleStablesE1();
+                CastleStablesW1();
             break;
             case "n":
                 KeepPathW();
             break;
             case "s":
-                CastleStablesE2();
+                CastleStablesW2();
             break;
             case "e":
                 alert("Yeah... Mate theres a freaking wall there.");
-                CastleStablesE1();
+                CastleStablesW1();
             break;
             case "w":
                 CSCourtyard1();
             break;
             default:
                 alert("I HAVE BEEN GIVING YOU COMMANDS THIS WHOLE FREAKIN TIME");
-                CastleStablesE1();
+                CastleStablesW1();
             break;
         }
     }
-    function CastleStablesE2(){
+    function CastleStablesW2(){
         let eastStables2 = prompt("You walk into the south end of the stables, but there is still nothing there. \n N,E,S,W \n Look around").toLowerCase();
         switch(eastStables2){
             case "look" || "look around":
                 alert("I haven't programmed that path yet");
-                CastleStablesE2();
+                CastleStablesW2();
             break;
             case "n":
-                CastleStablesE1();
+                CastleStablesW1();
             break;
             case "s":
                 alert("Really? you ran into another wall.");
-                CastleStablesE2();
+                CastleStablesW2();
             break;
             case "e":
                 CSFarm1();
             break;
             case "w":
                 alert("Mate, you hit ANOTHER wall... \n I guess I could tell you if there are walls somewhere. \n But wheres the fun in that?");
-                CastleStablesE2();
+                CastleStablesW2();
             break;
             default:
                 alert("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-                CastleStablesE2();
+                CastleStablesW2();
             break;
         }
     }
@@ -456,7 +494,7 @@ function Game(){
                 CSCourtyard2();
             break;
             case "w":
-                CastleStablesE1();
+                CastleStablesW1();
             break;
             default:
                 alert("Please stop bothering me, as a program I am getting sick of all these weird things you say.");
@@ -545,7 +583,22 @@ function Game(){
     function CNCourtyard2(){
         let northCourtyard2 = prompt("You are at the northeast wall of the keep, you can see to the north wall and the buildings to the east and west. \n N,S,E,W").toLowerCase();
         switch(northCourtyard2){
-            
+            case "n":
+                CNFarm2();
+            break;
+            case "s":
+                alert("Walking into walls is a great passtime isn't it?");
+            break;
+            case "w":
+                CNCourtyard1();
+            break;
+            case "e":
+                KeepPathE();
+            break;
+            default:
+                alert("COMMANDS");
+                CNCourtyard2();
+            break;
         }
     }
     function CSFarm1(){
@@ -561,7 +614,7 @@ function Game(){
                 CSFarm2();
             break;
             case "w":
-                CastleStablesE2();
+                CastleStablesW2();
             break;
             default:
                 alert("You are getting real annoying with all that nonsense you type in.");
@@ -667,7 +720,7 @@ function Game(){
                 CNCourtyard2();
             break;
             case "e":
-                CastleStablesW1();
+                CastleStablesE1();
             break;
             case "w":
                 CNFarm1();
@@ -769,7 +822,7 @@ function Game(){
     }
     function KeepSmith(){
         alert("The Blacksmith looks over at you, scowls and the slowly walks over to see what you want.");
-            var keepSmith = prompt("What would you like to buy? \n Bow \n Armor \n Leave").toLowerCase();
+            var keepSmith = prompt("What would you like to buy? \n Bow \n Armor \n Arrows \n Leave").toLowerCase();
                 if( keepSmith == "bow" || keepSmith == "buy bow"){
                     var weaponBuy = confirm("Are you sure you want to buy this Bow?");
                         if(weaponBuy){
@@ -793,11 +846,23 @@ function Game(){
                             KeepSmith();
                         }
                 }
+                else if(keepSmith == "arrows" || "buy arrows"){
+                    while(!confirm("Are you sure you want to purchase "+buyArrows+" for 1 coin per arrow?")){
+                        buyArrows = propmt("How many arrows do you want to buy?");
+                    }
+                    for(i = 1; i <= buyArrows; i++){
+                        inventory.arrows ++;
+                        inventory.coins --;
+                    }
+                    alert("You have "+inventory.coins+" left");
+                    alert("You have purchest "+buyArrows+" arrows.");
+                    KeepSmith();
+                }
                 else if(keepSmith == "leave"){
                     Keep();
                 }
                 else{
-                    Keep();
+                    KeepSmith();
                 }
     }
     function KeepThrone1(){
