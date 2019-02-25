@@ -21,7 +21,9 @@ var inventory = {
     arrows:0,
     food:0,
 }
-
+var castlePlayerHouse = {
+    storage:0,
+}
 var pcStats = {
     life:100,
     attack:0,
