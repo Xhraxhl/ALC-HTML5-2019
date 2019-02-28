@@ -236,7 +236,7 @@ function Game(){
                 Wroad2();
             break;
             case "w" || "walk w":
-                CastleGateE();
+                Castle();
             break;
             case "look" || "look around":
                 alert("There isn't much around besides forest and the pathway that you are on.");
@@ -248,691 +248,783 @@ function Game(){
             break;
         }
     }
-    function CastleGateE(){
-        var castleEGate = prompt("Walking through the giant gates you can see past the castle walls, and into the giant forest to the east. \n E,W \n Look around").toLowerCase();
-        switch(castleEGate){
-            case "n" || "walk n":
-                alert("There is a wall there.");
-                CastleGateE();
-            break;
-            case "s" || "walk s":
-                alert("There is a wall there.");
-                CastleGateE();
-            break;
-            case "w" || "walk w":
-                KeepPathE();
-            break;
-            case "e" || "walk e":
-                Wroad3();
-            break;
-            case "look" || "look around":
-                var castleEGateLook = prompt("You notice some stairs in the corner that you could climb up. \n Climb stairs \n Ignore").toLowerCase();
-                if(castleEGateLook == "climb" || "climb stairs"){
-                    var aboveEGate = prompt("Now on top of the East gate you notice you can actually see the ruins and city vary distantly in the east. \n N,S \n Climb down");
-                    if(aboveEGate == "climb down" || aboveEGate == "down"){
-                        CastleGateE();
-                    }
-                    else if(aboveEGate == "n" || aboveEGate == "walk n"){
-                        Wall1NE();
-                    }
-                    else if(aboveEGate == "s" || aboveEGate == "walk s"){
-                        Wall1SE();
-                    }
-                    else{
-                        alert("You slipped back down to the gate.");
-                        CastleGateE();
-                    }
-                }
-                else{
-                    CastleGateE();
-                }
-            default:
-                alert("I've been giving you options you know");
-            break;
-        }
-    }
-    function KeepPathE(){
-        var ePathKeep = prompt("Walking into the castle you can see it is even bigger than you had fist thought. \n Look around \n N,S,E,W").toLowerCase();
-        switch(ePathKeep){
-            case "w" || "walk w":
-                Keep();
-            break;
-            case "n" || "walk n":
-                StablesNE1();
-            break;
-            case "s" || "walk s":
-                GuardHouse1();
-            break;
-            case "e" || "walk e":
-                CastleGateE();
-            break;
-            case "look" || "look around":
-                var eKeepPathLook = prompt("You see the giant keep in the center, stables north of you, some houses south of you, and the exit behind you. \n N,S,E,W");
-                switch(eKeepPathLook){
-                    case "w" || "walk w":
-                        alert("You enter the Keep.");
-                        Keep();
-                    break;
-                    case "n" || "walk n":
-                        StablesNE1();
-                    break;
-                    case "s" || "walk s":
-                        GuardHouse1();
-                    break;
-                    case "e" || "walk e":
-                        CastleGateE();
-                    break;
-                    default:
-                        KeepPathE();
-                    break;
-                }
-            break;
-            default:
-                alert("Please use a given option.");
-                KeepPathE();
-            break;
-        }
-    }
-    function GuardHouse1(){
-        var firstGuardHouse = prompt("You step into the guardhouse see rows of bunks, but no guards are inside. \n Look around \n Leave").toLowerCase();
-        switch(firstGuardHouse){
-            case "leave":
-                KeepPathE();
-            break;
-            case "look" || "look around":
-                var guardHouseLook = prompt("You notice a bow on the wall, a door on the other side, and that there actually is a guard sleeping on one of the beds. \n Take bow \n Open the door \n Wake guard").toLowerCase();
-                switch(guardHouseLook){
-                    case "take bow" || "bow":
-                        inventory.weapon ++;
-                        alert("You take the bow and dash back outside before the guard can notice.");
-                        alert("You now have "+inventory.weapon+" weapons.");
-                        KeepPathE();
-                    break;
-                    case "open the door" || "open door" || "door":
-                        alert("You step outside and into the middle of some houses.");
-                        CastleHousing1();
-                    break;
-                    case "wake guard" || "wake the guard":
-                        alert("The guard opens his eyes, sits up, and stares at you, 'Can't just let a man get in some sleep can you boss?', and flops back down onto the bed.");
-                        alert("Cunfused you walk back outside.");
-                        KeepPathE();
-                    break;
-                    default:
-                        GuardHouse1();
-                    break;
-                }
-            break;
-            default:
-                GuardHouse1();
-            break;
-        }
-    }
-    function CastleHousing1(){
-        if(castleSettings.hasHouse == 1){
-            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W \n Enter your house").toLowerCase();
-            switch(firstCastleHouses){
-                case "n":
-                    GuardHouse1();
-                break;
-                case "s":
-                    alert("There is a wall there.");
-                    CastleHousing1();
-                break;
-                case "w":
-                    CSFarm2();
-                break;
-                case "e":
-                    alert("You can't climb that wall mate.");
-                    CastleHousing1();
-                break;
-                case "enter house" || "house":
-                    CastlePCHouse();
-                break;
-                default:
-                    alert("You trying to find an easter egg or something?");
-                    CastleHousing1();
-                break;
-            }
-        }
-        else{
-            var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W").toLowerCase();
-            switch(firstCastleHouses){
-                case "n":
-                    GuardHouse1();
-                break;
-                case "s":
-                    alert("There is a wall there.");
-                    CastleHousing1();
-                break;
-                case "w":
-                    CSFarm2();
-                break;
-                case "e":
-                    alert("You can't climb that wall mate.");
-                    CastleHousing1();
-                break;
-                default:
-                    alert("You trying to find an easter egg or something?");
-                    CastleHousing1();
-                break;
-            }
-        }
-    }
-    function CastleStablesE1(){
-
-    }
-    function CastleStablesE2(){
-
-    }
-    function CastleStablesW1(){
-        let eastStables1 = prompt("You step into the north end of the stables, but realize there are no horses, just empty stalls. \n N,S,E,W \n Look around").toLowerCase();
-        switch(eastStables1){
-            case "look" || "look around":
-                alert("That path isn't programmed.");
-                CastleStablesW1();
-            break;
-            case "n":
-                KeepPathW();
-            break;
-            case "s":
-                CastleStablesW2();
-            break;
-            case "e":
-                alert("Yeah... Mate theres a freaking wall there.");
-                CastleStablesW1();
-            break;
-            case "w":
-                CSCourtyard1();
-            break;
-            default:
-                alert("I HAVE BEEN GIVING YOU COMMANDS THIS WHOLE FREAKIN TIME");
-                CastleStablesW1();
-            break;
-        }
-    }
-    function CastleStablesW2(){
-        let eastStables2 = prompt("You walk into the south end of the stables, but there is still nothing there. \n N,E,S,W \n Look around").toLowerCase();
-        switch(eastStables2){
-            case "look" || "look around":
-                alert("I haven't programmed that path yet");
-                CastleStablesW2();
-            break;
-            case "n":
-                CastleStablesW1();
-            break;
-            case "s":
-                alert("Really? you ran into another wall.");
-                CastleStablesW2();
-            break;
-            case "e":
-                CSFarm1();
-            break;
-            case "w":
-                alert("Mate, you hit ANOTHER wall... \n I guess I could tell you if there are walls somewhere. \n But wheres the fun in that?");
-                CastleStablesW2();
-            break;
-            default:
-                alert("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-                CastleStablesW2();
-            break;
-        }
-    }
-    function CSCourtyard1(){
-        let southCourtyard1 = prompt("You are right next to the southwest wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLowerCase();
-        switch(southCourtyard1){
-            case "n":
-                var southYardClimb = confirm("You notice that you might be able to climb up the wall. Do you wish to climb the wall?");
-                if(southYardClimb){
-                    KeepClimb();
-                }
-                else{
-                    CSCourtyard1();
-                }
-            break;
-            case "s":
-                CSFarm1();
-            break;
-            case "e":
-                CSCourtyard2();
-            break;
-            case "w":
-                CastleStablesW1();
-            break;
-            default:
-                alert("Please stop bothering me, as a program I am getting sick of all these weird things you say.");
-                CSCourtyard1();
-            break;
-        }
-    }
-    function KeepClimb(){
-        let climbKeep = prompt("You start to climb, once you are around the middle of the tower, enough to see over the walls, you get a bit tired and rest against the wall. \n Climb higher \n Go back down").toLowerCase();
-        switch(climbKeep){
-            case "climb higher" || "higher" || "climb":
-                KeepTop();
-            break;
-            case "go back down" || "down" || "go back" || "go down":
-                CSCourtyard1();
-            break;
-            default:
-                alert("Tada! You got stuck.");
-                KeepClimb();
-            break;
-        }
-    }
-    function KeepTop(){
-        let keepRoof = prompt("You are at the top of the keep and can see far out into the forests to the north, east, and south, but you notice that the world just stops if you look west far enough. \n Go back down \n Rest").toLowerCase();
-        switch(keepRoof){
-            case "go back down" || "down" || "go back" || "go down":
-                KeepClimb();
-            break;
-            case "rest":
-                alert("You go to sleep and wake up later.");
-                KeepTop();
-            break;
-            default:
-                KeepTop();
-            break;
-        }
-    }
     function GameEND(){
-        alert("Game Ended, you left early.");
+        alert("Well... I think you died.");
     }
-    function CSCourtyard2(){
-        let southCourtyard2 = prompt("You are right next to the southeast wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLocaleLowerCase();
-        switch(southCourtyard2){
-            case "n":
-                alert("You might've just ran into the Keep wall.");
-                CSCourtyard2();
-            break;
-            case "s":
-                CSFarm2();
-            break;
-            case "e":
-                KeepPathE();
-            break;
-            case "w":
-                CSCourtyard1();
-            break;
-            default:
-                alert("Please stop bothering me, just type in the stupid commands");
-                CSCourtyard2();
-            break;
-
-        }
-    }
-    function CNCourtyard1(){
-        let northCourtyard1 = prompt("You are at the northwest wall of the keep, you can see farms to the north, and buildings to both the east and west. \n N,S,E,W").toLowerCase();
-        switch(northCourtyard1){
-            case "s":
-                alert("What are you gonna do? \n I mean besides running into the wall.");
-                CNCourtyard1();
-            break;
-            case "w":
-                GuardHouse2();
-            break;
-            case "n":
-                CNFarm1();
-            break;
-            case "e":
-                CNCourtyard2();
-            break;
-            default:
-                alert("How would you feel if you prompted somebody to do things and they did somthing else?");
-                CNCourtyard1();
-            break;
-        }
-    }
-    function CNCourtyard2(){
-        let northCourtyard2 = prompt("You are at the northeast wall of the keep, you can see to the north wall and the buildings to the east and west. \n N,S,E,W").toLowerCase();
-        switch(northCourtyard2){
-            case "n":
-                CNFarm2();
-            break;
-            case "s":
-                alert("Walking into walls is a great passtime isn't it?");
-            break;
-            case "w":
-                CNCourtyard1();
-            break;
-            case "e":
-                KeepPathE();
-            break;
-            default:
-                alert("COMMANDS");
-                CNCourtyard2();
-            break;
-        }
-    }
-    function CSFarm1(){
-        let southFarm1 = prompt("You step into a large area of farmland, across the field you can see the east and south walls. \n N,S,E,W").toLowerCase();
-        switch(southFarm1){
-            case "n":
-                CSCourtyard1();
-            break;
-            case "s":
-                CSFarm3();
-            break;
-            case "e":
-                CSFarm2();
-            break;
-            case "w":
-                CastleStablesW2();
-            break;
-            default:
-                alert("You are getting real annoying with all that nonsense you type in.");
-                CSFarm1();
-            break;
-        }
-    }
-    function CSFarm2(){
-        let southFarm2 = prompt("You step into a large area of farmland, across the field you can see the west and south walls. \n N,S,E,W").toLowerCase();
-        switch(southFarm2){
-            case "n":
-                CSCourtyard2();
-            break;
-            case "s":
-                CSFarm4();
-            break;
-            case "e":
-                CastleHousing1();
-            break;
-            case "w":
-                CSFarm1();
-            break;
-            default:
-                alert("You are getting real annoying with all that nonsense you type in.");
-                CSFarm2();
-            break;
-        }
-    }
-    function CSFarm3(){
-        let southFarm3 = prompt("You step into a large area of farmland, across the field you can see the Keep and the east side of the castle. \n N,S,E,W").toLowerCase();
-        switch(southFarm3){
-            case "n":
-                CSFarm1();
-            break;
-            case "s":
-                alert("You ran right into a wall.");
-                CSFarm3();
-            break;
-            case "e":
-                CSFarm4();
-            break;
-            case "w":
-                alert("Yeah... Thats a wall");
-                CSFarm3();
-            break;
-            default:
-                alert("You are speaking some other language with all that nonsense you type in.");
-                CSFarm3();
-            break;
-        }
-    }
-    function CSFarm4(){
-        let southFarm4 = prompt("You step into a large area of farmland, across the field you can see the Keep and the west side of the castle. \n N,S,E,W").toLowerCase();
-        switch(southFarm4){
-            case "n":
-                CSFarm2();
-            break;
-            case "s":
-                alert("That may or may not have been a wall");
-                CSFarm4();
-            break;
-            case "e":
-                alert("WALLS ARE EVERYWHERE!");
-                CSFarm4();
-            break;
-            case "w":
-                CSFarm3();
-            break;
-            default:
-                alert("You don't even read this do you?");
-                CSFarm4();
-            break;
-        }
-    }
-    function CNFarm1(){
-        let northFarm1 = prompt("You step into a large area of farmland, you can see across the field to the north and east walls. \n N,S,E,W").toLowerCase();
-        switch(northFarm1){
-            case "n":
-                CNFarm3();
-            break;
-            case "s":
-                CNCourtyard1();
-            break;
-            case "e":
-                CNFarm2();
-            break;
-            case "w":
-                CastleHousing2();
-            break;
-            default:
-                alert("You are getting real annoying with all that nonsense you type in.");
-                CNFarm1();
-            break;
-        }
-    }
-    function CNFarm2(){
-        let northFarm2 = prompt("You are in a large field, you can see across to the west and north walls. \n N,S,E,W").toLowerCase();
-        switch(northFarm2){
-            case "n":
-                CNFarm4();
-            break;
-            case "s":
-                CNCourtyard2();
-            break;
-            case "e":
-                CastleStablesE1();
-            break;
-            case "w":
-                CNFarm1();
-            break;
-            default:
-                alert("Commands that are given usually work better.");
-                CNFarm2();
-            break;
-        }
-    }
-    function CNFarm3(){
-        let northFarm3 = prompt("You are in the northwest field and can see the Keep and east wall across the farmland. \n N,E,S,W").toLowerCase();
-        switch(northFarm3){
-            case "n":
-                alert("I got you to run into ANOTHER wall. \n HA");
-                CNFarm3();
-            break;
-            case "s":
-                CNFarm1();
-            break;
-            case "e":
-                CNFarm4();
-            break;
-            case "w":
-                alert("AAAAAND!!!! \n another wall");
-                CNFarm3();
-            break;
-            default:
-                alert("Aren't prompted commands a beautiful thing?");
-                CNFarm3();
-            break;
-        }
-
-    }
-    function CNFarm4(){
-        let northFarm4 = prompt("You are in large swath of farmland, across the fields you can see the keep and the west wall. \n N,S,E,W").toLowerCase();
-        switch(northFarm4){
-            case "n":
-                alert("HA \n another wall");
-                CNFarm4();
-            break;
-            case "s":
-                CNFarm2();
-            break;
-            case "e":
-                alert("GUESS WHAT? \n You walked into a wall... again.");
-            break;
-            case "w":
-                CNFarm3();
-            break;
-            default:
-                alert("Hey, listen, Hey listen... \n Don't let them take advantage of your slipstream.");
-                CNFarm4();
-            break;
-        }
-    }
-    function Keep(){
-        var insideKeep = prompt("You walk into a large entryway with multiple passages. \n Upstairs \n West tower \n Look \n Leave").toLowerCase();
-        switch(insideKeep){
-            case "upstairs" || "go upstairs":
-                var keepUpstairs = prompt("You climb the stairs until you arrive at a doorway. \n Enter \n Go back down").toLowerCase();
-                if(keepUpstairs == "enter" || keepUpstairs == "enter doorway"){
-                    if(metNobles == 1){
-                        Keepthrone();
-                    }
-                    else{
-                        KeepThrone1();
-                    }
-                }
-                else if(keepUpstairs == "down" || keepUpstairs == "go down"){
-                    Keep();
-                }
-                else{
-                    Keep();
-                }
-            break;
-            case "west tower" || "go to west tower":
-                var westtower = prompt("You walk to the west tower. \n Upstairs \n East tower \n Look \n Leave").toLowerCase();
-                alert("Sorry but this is unfinished.");
-                Keep();
-            break;
-            case "leave":
-                KeepPathE();
-            break;
-            case "look" || "look around":
-                var keepLook = prompt("You look around and only notice a Smith in one of the corners \n Buy \n Keep").toLowerCase();
-                if(keepLook == "buy"){
-                    KeepSmith();
-                }
-                else{
-                    Keep();
-                }
-            break;
-            default:
-                alert("Type an option thats given please.");
-                Keep();
-            break;
-        }
-    }
-    function KeepSmith(){
-        alert("The Blacksmith looks over at you, scowls and the slowly walks over to see what you want.");
-            var keepSmith = prompt("What would you like to buy? \n Bow \n Armor \n Arrows \n Leave").toLowerCase();
-                if( keepSmith == "bow" || keepSmith == "buy bow"){
-                    var weaponBuy = confirm("Are you sure you want to buy this Bow?");
-                        if(weaponBuy){
-                            inventory.weapon ++;
-                            alert("You now have "+inventory.weapon+" weapons!");
-                            inventory.coins = inventory.coins - 10;
-                            alert("You now have "+inventory.coins+" coins!");
-                            KeepSmith();
+    function Castle(){
+        CastleGateE();
+        
+        function CastleGateE(){
+            var castleEGate = prompt("Walking through the giant gates you can see past the castle walls, and into the giant forest to the east. \n E,W \n Look around").toLowerCase();
+            switch(castleEGate){
+                case "n" || "walk n":
+                    alert("There is a wall there.");
+                    CastleGateE();
+                break;
+                case "s" || "walk s":
+                    alert("There is a wall there.");
+                    CastleGateE();
+                break;
+                case "w" || "walk w":
+                    KeepPathE();
+                break;
+                case "e" || "walk e":
+                    Wroad3();
+                break;
+                case "look" || "look around":
+                    var castleEGateLook = prompt("You notice some stairs in the corner that you could climb up. \n Climb stairs \n Ignore").toLowerCase();
+                    if(castleEGateLook == "climb" || "climb stairs"){
+                        var aboveEGate = prompt("Now on top of the East gate you notice you can actually see the ruins and city vary distantly in the east. \n N,S \n Climb down");
+                        if(aboveEGate == "climb down" || aboveEGate == "down"){
+                            CastleGateE();
+                        }
+                        else if(aboveEGate == "n" || aboveEGate == "walk n"){
+                            Wall1NE();
+                        }
+                        else if(aboveEGate == "s" || aboveEGate == "walk s"){
+                            Wall1SE();
                         }
                         else{
-                            KeepSmith();
+                            alert("You slipped back down to the gate.");
+                            CastleGateE();
                         }
-                }
-                else if(keepSmith == "armor" || keepSmith == "buy armor"){
-                    var weaponBuy = confirm("Are you sure you want to buy this Armor?");
-                        if(weaponBuy){
-                            inventory.armor ++;
-                            alert("You now have "+inventory.armor+" sets of armor!");
-                            inventory.coins = inventory.coins - 20;
-                            alert("You now have "+inventory.coins+" coins left.");
-                            KeepSmith();
-                        }
-                }
-                else if(keepSmith == "arrows" || "buy arrows"){
-                    while(!confirm("Are you sure you want to purchase "+buyArrows+" for 1 coin per arrow?")){
-                        buyArrows = propmt("How many arrows do you want to buy?");
                     }
-                    for(i = 1; i <= buyArrows; i++){
-                        inventory.arrows ++;
-                        inventory.coins --;
+                    else{
+                        CastleGateE();
                     }
-                    alert("You have "+inventory.coins+" left");
-                    alert("You have purchest "+buyArrows+" arrows.");
-                    KeepSmith();
-                }
-                else if(keepSmith == "leave"){
-                    Keep();
-                }
-                else{
-                    KeepSmith();
-                }
-    }
-    function KeepThrone1(){
-        var throneRoom = prompt("You walk into the throne room, and realize instantly that you barged right into the middle of a meeting. The group of five nobles is staring at you from around their map table, clearly annoyed. \n Greet them \n Apologize and leave").toLowerCase();
-        switch(throneRoom){
-            case "greet them" || "greet":
-                MeetKeepNobles();
-            break;
-            case "apologize and leave" || "leave" || "apologize":
-                Keep();
-            break;
-            default:
-                alert("You panicked and ran all the way out of the keep.");
-                KeepPathE();
-            break;
-        }
-    }
-    function Keepthrone(){
-        alert("This may or may not be broke");
-        Keep();
-    }
-    function MeetKeepNobles(){
-        castleSettings.metNobles ++;
-        alert("You walk in, and join their cirlce standing around the map table, with them still staring at you. One of the nobles shakes off his suprise and asks, 'And who might you be?', you respond saying, 'I go by "+playerName+", who might all of you be?'");
-        alert("'What might your business be here in the Castle of "+worldNames[worldName]+" be?' One noble asks, but another, friendlier looking noble steps in 'Sorry about Klein he isn't very friendly to strangers such as yourself barging into our meetings, I am Reighn the master of the Keep.'");
-        var nobleQuestions1 = prompt("'Could we ask where you got your fine armor?' Reighn asks. \n You look down realizing that your military fatigues had somehow morphed into a quite expensive looking suit of armor. \n Tell truth \n Make up story").toLowerCase();
-        switch(nobleQuestions1){
-            case "tell truth" || "truth":
-                NobleTruths();
-            break;
-            case "make up story" || "story":
-                NobleLies();
-            break;
-            default:
-                alert("Could you maybe, kinda, just, possibly, use one of the options I just gave you?");
-                MeetKeepNobles();
-            break;
-        }
-    }
-    function NobleTruths(){
-        if(castleSettings.questionAsked == 0){    
-            alert("You tell the nobles your story, how you woke up in the middle of a crossroad, and ended up walking into this castle, right into the middle of their meeting.");
-            var nobleTruth = prompt("'So you have no recollection of how you actually got here, and you can walk on the roads? This is the biggest breakthrough since the last traveler that showed up here!' \n Traveler? \n Go on").toLowerCase();
-            switch(nobleTruth){
-                case "traveler?" || "traveler":
-                    alert("'So you haven't heard of what you are? A traveler, is one who is not from our realm of "+worldNames[worldName]+", is one who can walk the roads, and is not held in by the borders of the settlements. There used to be many of you, but we haven't heard from any travelers in over 200 years. At the moment you're the only living traveler we have heard of.'");
-                    castleSettings.questionAsked ++;
-                    NobleTruths();
-                break;
-                case "go on":
-                castleSettings.questionAsked ++;
-                NobleTruths(); 
-                break;   
                 default:
-                    alert("RESTARTING FUNCTION BECAUSE YOU CAN'T TYPE IN A COMMAND THAT I GAVE YOU");
-                    NobleTruths();
-                break; 
+                    alert("I've been giving you options you know");
+                break;
             }
         }
-        else{
-            alert("'You should go make yourself at home, there are some houses behind the south eastern guardhouse. The empty one can be yours. We need to discuss this.' You take the hint to leave, and go straight to your new house.");
-            castleSettings.hasHouse ++;
-            CastlePCHouse();
-        }    
-    }
-    function CastlePCHouse(){
-        alert("Outfitting this would take a looongg while, so I just made it exist for now so I can come back to this \n Sorry");
-        CastleHousing1();
+        function KeepPathE(){
+            var ePathKeep = prompt("Walking into the castle you can see it is even bigger than you had fist thought. \n Look around \n N,S,E,W").toLowerCase();
+            switch(ePathKeep){
+                case "w" || "walk w":
+                    Keep();
+                break;
+                case "n" || "walk n":
+                    StablesNE1();
+                break;
+                case "s" || "walk s":
+                    GuardHouse1();
+                break;
+                case "e" || "walk e":
+                    CastleGateE();
+                break;
+                case "look" || "look around":
+                    var eKeepPathLook = prompt("You see the giant keep in the center, stables north of you, some houses south of you, and the exit behind you. \n N,S,E,W");
+                    switch(eKeepPathLook){
+                        case "w" || "walk w":
+                            alert("You enter the Keep.");
+                            Keep();
+                        break;
+                        case "n" || "walk n":
+                            StablesNE1();
+                        break;
+                        case "s" || "walk s":
+                            GuardHouse1();
+                        break;
+                        case "e" || "walk e":
+                            CastleGateE();
+                        break;
+                        default:
+                            KeepPathE();
+                        break;
+                    }
+                break;
+                default:
+                    alert("Please use a given option.");
+                    KeepPathE();
+                break;
+            }
+        }
+        function GuardHouse1(){
+            var firstGuardHouse = prompt("You step into the guardhouse see rows of bunks, but no guards are inside. \n Look around \n Leave").toLowerCase();
+            switch(firstGuardHouse){
+                case "leave":
+                    KeepPathE();
+                break;
+                case "look" || "look around":
+                    var guardHouseLook = prompt("You notice a bow on the wall, a door on the other side, and that there actually is a guard sleeping on one of the beds. \n Take bow \n Open the door \n Wake guard").toLowerCase();
+                    switch(guardHouseLook){
+                        case "take bow" || "bow":
+                            inventory.weapon ++;
+                            alert("You take the bow and dash back outside before the guard can notice.");
+                            alert("You now have "+inventory.weapon+" weapons.");
+                            KeepPathE();
+                        break;
+                        case "open the door" || "open door" || "door":
+                            alert("You step outside and into the middle of some houses.");
+                            CastleHousing1();
+                        break;
+                        case "wake guard" || "wake the guard":
+                            alert("The guard opens his eyes, sits up, and stares at you, 'Can't just let a man get in some sleep can you boss?', and flops back down onto the bed.");
+                            alert("Cunfused you walk back outside.");
+                            KeepPathE();
+                        break;
+                        default:
+                            GuardHouse1();
+                        break;
+                    }
+                break;
+                default:
+                    GuardHouse1();
+                break;
+            }
+        }
+        function GuardHouse2(){
+            let secondGuardHouse = prompt("You step into the guardhouse and notice that it is empty, and hasn't been stepped in for a while. \n N,S,E,W ").toLowerCase();
+            switch(secondGuardHouse){
+                case "n":
+                    CastleHousing2();
+                break;
+                case "s":
+                    KeepPathW();
+                break;
+                case "w":
+                    alert("WALLS");
+                    GuardHouse2();
+                break;
+                case "e":
+                    CNCourtyard1();
+                break;
+                default:
+                    GuardHouse2();
+                break;
+            }
+        }
+        function CastleHousing1(){
+            if(castleSettings.hasHouse == 1){
+                var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W \n Enter your house").toLowerCase();
+                switch(firstCastleHouses){
+                    case "n":
+                        GuardHouse1();
+                    break;
+                    case "s":
+                        alert("There is a wall there.");
+                        CastleHousing1();
+                    break;
+                    case "w":
+                        CSFarm2();
+                    break;
+                    case "e":
+                        alert("You can't climb that wall mate.");
+                        CastleHousing1();
+                    break;
+                    case "enter house" || "house":
+                        CastlePCHouse();
+                    break;
+                    default:
+                        alert("You trying to find an easter egg or something?");
+                        CastleHousing1();
+                    break;
+                }
+            }
+            else{
+                var firstCastleHouses = prompt("You walk back behind the guardhouse and see multiple houses. \n N,E,S,W").toLowerCase();
+                switch(firstCastleHouses){
+                    case "n":
+                        GuardHouse1();
+                    break;
+                    case "s":
+                        alert("There is a wall there.");
+                        CastleHousing1();
+                    break;
+                    case "w":
+                        CSFarm2();
+                    break;
+                    case "e":
+                        alert("You can't climb that wall mate.");
+                        CastleHousing1();
+                    break;
+                    default:
+                        alert("You trying to find an easter egg or something?");
+                        CastleHousing1();
+                    break;
+                }
+            }
+        }
+        function CastleHousing2(){
+            let secondCastleHouses = prompt("You step into an open area with houses all around it. None of the houses look like anybody is living in them. \n N,S,E,W").toLowerCase();
+            switch(secondCastleHouses){
+                case "n":
+                    alert("That might've been a wall.");
+                    CastleHousing2();
+                break;
+                case "s":
+                    GuardHouse2();
+                break;
+                case "w":
+                    alert("Ouch. That might've hurt... a bit.");
+                    CastleHousing2();
+                break;
+                case "e":
+                    CNFarm1();
+                break;
+                default:
+                    alert("COMMANDS \n PLEASE");
+                    CastleHousing2();
+                break;
+            }
+        }
+        function CastleStablesE1(){
+            let eastStables1 = prompt("You walk into the stables and notice that they are completely empty \n N,S,E,W").toLowerCase();
+            switch(eastStables1){
+                case "n":
+                    CastleStablesE2();
+                break;
+                case "s":
+                    KeepPathE();
+                break;
+                case "w":
+                    alert("HEY LOOK! \n That was a wall.");
+                    CastleStablesE1();
+                break;
+                case "e":
+                    alert("Wall...");
+                    CastleStablesE1();
+                break;
+                default:
+                    alert("Oh hey look! A command that DOESN'T WORK");
+                    CastleStablesE1()
+                break;
+            }
+        }
+        function CastleStablesE2(){
+            let eastStables2 = prompt("The north end of the stables are empty too. \n N,S,E,W").toLowerCase();
+            switch(eastStables2){
+                case "n":
+                    alert("OH HEY A WALL.");
+                    CastleStablesE2();
+                break;
+                case "s":
+                    CastleStablesE1();
+                break;
+                case "e" || "w":
+                    alert("Guess what? \n Yep. More walls");
+                    CastleStablesE2();
+                break;
+                default:
+                    alert("Commands...");
+                    CastleStablesE2();
+                break;
+            }
+        }
+        function CastleStablesW1(){
+            let eastStables1 = prompt("You step into the north end of the stables, but realize there are no horses, just empty stalls. \n N,S,E,W \n Look around").toLowerCase();
+            switch(eastStables1){
+                case "look" || "look around":
+                    alert("That path isn't programmed.");
+                    CastleStablesW1();
+                break;
+                case "n":
+                    KeepPathW();
+                break;
+                case "s":
+                    CastleStablesW2();
+                break;
+                case "e":
+                    alert("Yeah... Mate theres a freaking wall there.");
+                    CastleStablesW1();
+                break;
+                case "w":
+                    CSCourtyard1();
+                break;
+                default:
+                    alert("I HAVE BEEN GIVING YOU COMMANDS THIS WHOLE FREAKIN TIME");
+                    CastleStablesW1();
+                break;
+            }
+        }
+        function CastleStablesW2(){
+            let eastStables2 = prompt("You walk into the south end of the stables, but there is still nothing there. \n N,E,S,W \n Look around").toLowerCase();
+            switch(eastStables2){
+                case "look" || "look around":
+                    alert("I haven't programmed that path yet");
+                    CastleStablesW2();
+                break;
+                case "n":
+                    CastleStablesW1();
+                break;
+                case "s":
+                    alert("Really? you ran into another wall.");
+                    CastleStablesW2();
+                break;
+                case "e":
+                    CSFarm1();
+                break;
+                case "w":
+                    alert("Mate, you hit ANOTHER wall... \n I guess I could tell you if there are walls somewhere. \n But wheres the fun in that?");
+                    CastleStablesW2();
+                break;
+                default:
+                    alert("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+                    CastleStablesW2();
+                break;
+            }
+        }
+        function CSCourtyard1(){
+            let southCourtyard1 = prompt("You are right next to the southwest wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLowerCase();
+            switch(southCourtyard1){
+                case "n":
+                    var southYardClimb = confirm("You notice that you might be able to climb up the wall. Do you wish to climb the wall?");
+                    if(southYardClimb){
+                        KeepClimb();
+                    }
+                    else{
+                        CSCourtyard1();
+                    }
+                break;
+                case "s":
+                    CSFarm1();
+                break;
+                case "e":
+                    CSCourtyard2();
+                break;
+                case "w":
+                    CastleStablesW1();
+                break;
+                default:
+                    alert("Please stop bothering me, as a program I am getting sick of all these weird things you say.");
+                    CSCourtyard1();
+                break;
+            }
+        }
+        function KeepClimb(){
+            let climbKeep = prompt("You start to climb, once you are around the middle of the tower, enough to see over the walls, you get a bit tired and rest against the wall. \n Climb higher \n Go back down").toLowerCase();
+            switch(climbKeep){
+                case "climb higher" || "higher" || "climb":
+                    KeepTop();
+                break;
+                case "go back down" || "down" || "go back" || "go down":
+                    CSCourtyard1();
+                break;
+                default:
+                    alert("Tada! You got stuck.");
+                    KeepClimb();
+                break;
+            }
+        }
+        function KeepTop(){
+            let keepRoof = prompt("You are at the top of the keep and can see far out into the forests to the north, east, and south, but you notice that the world just stops if you look west far enough. \n Go back down \n Rest").toLowerCase();
+            switch(keepRoof){
+                case "go back down" || "down" || "go back" || "go down":
+                    KeepClimb();
+                break;
+                case "rest":
+                    alert("You go to sleep and wake up later.");
+                    KeepTop();
+                break;
+                case "jump":
+                    alert("You jumped off the keep \n Well done.");
+                break;
+                default:
+                    KeepTop();
+                break;
+            }
+        }
+        function CSCourtyard2(){
+            let southCourtyard2 = prompt("You are right next to the southeast wall of the Keep, across the fields you can see all the way to the south wall. \n N,S,E,W").toLocaleLowerCase();
+            switch(southCourtyard2){
+                case "n":
+                    alert("You might've just ran into the Keep wall.");
+                    CSCourtyard2();
+                break;
+                case "s":
+                    CSFarm2();
+                break;
+                case "e":
+                    KeepPathE();
+                break;
+                case "w":
+                    CSCourtyard1();
+                break;
+                default:
+                    alert("Please stop bothering me, just type in the stupid commands");
+                    CSCourtyard2();
+                break;
+
+            }
+        }
+        function CNCourtyard1(){
+            let northCourtyard1 = prompt("You are at the northwest wall of the keep, you can see farms to the north, and buildings to both the east and west. \n N,S,E,W").toLowerCase();
+            switch(northCourtyard1){
+                case "s":
+                    alert("What are you gonna do? \n I mean besides running into the wall.");
+                    CNCourtyard1();
+                break;
+                case "w":
+                    GuardHouse2();
+                break;
+                case "n":
+                    CNFarm1();
+                break;
+                case "e":
+                    CNCourtyard2();
+                break;
+                default:
+                    alert("How would you feel if you prompted somebody to do things and they did somthing else?");
+                    CNCourtyard1();
+                break;
+            }
+        }
+        function CNCourtyard2(){
+            let northCourtyard2 = prompt("You are at the northeast wall of the keep, you can see to the north wall and the buildings to the east and west. \n N,S,E,W").toLowerCase();
+            switch(northCourtyard2){
+                case "n":
+                    CNFarm2();
+                break;
+                case "s":
+                    alert("Walking into walls is a great passtime isn't it?");
+                break;
+                case "w":
+                    CNCourtyard1();
+                break;
+                case "e":
+                    KeepPathE();
+                break;
+                default:
+                    alert("COMMANDS");
+                    CNCourtyard2();
+                break;
+            }
+        }
+        function CSFarm1(){
+            let southFarm1 = prompt("You step into a large area of farmland, across the field you can see the east and south walls. \n N,S,E,W").toLowerCase();
+            switch(southFarm1){
+                case "n":
+                    CSCourtyard1();
+                break;
+                case "s":
+                    CSFarm3();
+                break;
+                case "e":
+                    CSFarm2();
+                break;
+                case "w":
+                    CastleStablesW2();
+                break;
+                default:
+                    alert("You are getting real annoying with all that nonsense you type in.");
+                    CSFarm1();
+                break;
+            }
+        }
+        function CSFarm2(){
+            let southFarm2 = prompt("You step into a large area of farmland, across the field you can see the west and south walls. \n N,S,E,W").toLowerCase();
+            switch(southFarm2){
+                case "n":
+                    CSCourtyard2();
+                break;
+                case "s":
+                    CSFarm4();
+                break;
+                case "e":
+                    CastleHousing1();
+                break;
+                case "w":
+                    CSFarm1();
+                break;
+                default:
+                    alert("You are getting real annoying with all that nonsense you type in.");
+                    CSFarm2();
+                break;
+            }
+        }
+        function CSFarm3(){
+            let southFarm3 = prompt("You step into a large area of farmland, across the field you can see the Keep and the east side of the castle. \n N,S,E,W").toLowerCase();
+            switch(southFarm3){
+                case "n":
+                    CSFarm1();
+                break;
+                case "s":
+                    alert("You ran right into a wall.");
+                    CSFarm3();
+                break;
+                case "e":
+                    CSFarm4();
+                break;
+                case "w":
+                    alert("Yeah... Thats a wall");
+                    CSFarm3();
+                break;
+                default:
+                    alert("You are speaking some other language with all that nonsense you type in.");
+                    CSFarm3();
+                break;
+            }
+        }
+        function CSFarm4(){
+            let southFarm4 = prompt("You step into a large area of farmland, across the field you can see the Keep and the west side of the castle. \n N,S,E,W").toLowerCase();
+            switch(southFarm4){
+                case "n":
+                    CSFarm2();
+                break;
+                case "s":
+                    alert("That may or may not have been a wall");
+                    CSFarm4();
+                break;
+                case "e":
+                    alert("WALLS ARE EVERYWHERE!");
+                    CSFarm4();
+                break;
+                case "w":
+                    CSFarm3();
+                break;
+                default:
+                    alert("You don't even read this do you?");
+                    CSFarm4();
+                break;
+            }
+        }
+        function CNFarm1(){
+            let northFarm1 = prompt("You step into a large area of farmland, you can see across the field to the north and east walls. \n N,S,E,W").toLowerCase();
+            switch(northFarm1){
+                case "n":
+                    CNFarm3();
+                break;
+                case "s":
+                    CNCourtyard1();
+                break;
+                case "e":
+                    CNFarm2();
+                break;
+                case "w":
+                    CastleHousing2();
+                break;
+                default:
+                    alert("You are getting real annoying with all that nonsense you type in.");
+                    CNFarm1();
+                break;
+            }
+        }
+        function CNFarm2(){
+            let northFarm2 = prompt("You are in a large field, you can see across to the west and north walls. \n N,S,E,W").toLowerCase();
+            switch(northFarm2){
+                case "n":
+                    CNFarm4();
+                break;
+                case "s":
+                    CNCourtyard2();
+                break;
+                case "e":
+                    CastleStablesE1();
+                break;
+                case "w":
+                    CNFarm1();
+                break;
+                default:
+                    alert("Commands that are given usually work better.");
+                    CNFarm2();
+                break;
+            }
+        }
+        function CNFarm3(){
+            let northFarm3 = prompt("You are in the northwest field and can see the Keep and east wall across the farmland. \n N,E,S,W").toLowerCase();
+            switch(northFarm3){
+                case "n":
+                    alert("I got you to run into ANOTHER wall. \n HA");
+                    CNFarm3();
+                break;
+                case "s":
+                    CNFarm1();
+                break;
+                case "e":
+                    CNFarm4();
+                break;
+                case "w":
+                    alert("AAAAAND!!!! \n another wall");
+                    CNFarm3();
+                break;
+                default:
+                    alert("Aren't prompted commands a beautiful thing?");
+                    CNFarm3();
+                break;
+            }
+
+        }
+        function CNFarm4(){
+            let northFarm4 = prompt("You are in large swath of farmland, across the fields you can see the keep and the west wall. \n N,S,E,W").toLowerCase();
+            switch(northFarm4){
+                case "n":
+                    alert("HA \n another wall");
+                    CNFarm4();
+                break;
+                case "s":
+                    CNFarm2();
+                break;
+                case "e":
+                    alert("GUESS WHAT? \n You walked into a wall... again.");
+                break;
+                case "w":
+                    CNFarm3();
+                break;
+                default:
+                    alert("Hey, listen, Hey listen... \n Don't let them take advantage of your slipstream.");
+                    CNFarm4();
+                break;
+            }
+        }
+        function Keep(){
+            var insideKeep = prompt("You walk into a large entryway with multiple passages. \n Upstairs \n West tower \n Look \n Leave").toLowerCase();
+            switch(insideKeep){
+                case "upstairs" || "go upstairs":
+                    var keepUpstairs = prompt("You climb the stairs until you arrive at a doorway. \n Enter \n Go back down").toLowerCase();
+                    if(keepUpstairs == "enter" || keepUpstairs == "enter doorway"){
+                        if(metNobles == 1){
+                            Keepthrone();
+                        }
+                        else{
+                            KeepThrone1();
+                        }
+                    }
+                    else if(keepUpstairs == "down" || keepUpstairs == "go down"){
+                        Keep();
+                    }
+                    else{
+                        Keep();
+                    }
+                break;
+                case "west tower" || "go to west tower":
+                    var westtower = prompt("You walk to the west tower. \n Upstairs \n East tower \n Look \n Leave").toLowerCase();
+                    alert("Sorry but this is unfinished.");
+                    Keep();
+                break;
+                case "leave":
+                    KeepPathE();
+                break;
+                case "look" || "look around":
+                    var keepLook = prompt("You look around and only notice a Smith in one of the corners \n Buy \n Keep").toLowerCase();
+                    if(keepLook == "buy"){
+                        KeepSmith();
+                    }
+                    else{
+                        Keep();
+                    }
+                break;
+                default:
+                    alert("Type an option thats given please.");
+                    Keep();
+                break;
+            }
+        }
+        function KeepSmith(){
+            alert("The Blacksmith looks over at you, scowls and the slowly walks over to see what you want.");
+                var keepSmith = prompt("What would you like to buy? \n Bow \n Armor \n Arrows \n Leave").toLowerCase();
+                    if( keepSmith == "bow" || keepSmith == "buy bow"){
+                        var weaponBuy = confirm("Are you sure you want to buy this Bow?");
+                            if(weaponBuy){
+                                inventory.weapon ++;
+                                alert("You now have "+inventory.weapon+" weapons!");
+                                inventory.coins = inventory.coins - 10;
+                                alert("You now have "+inventory.coins+" coins!");
+                                KeepSmith();
+                            }
+                            else{
+                                KeepSmith();
+                            }
+                    }
+                    else if(keepSmith == "armor" || keepSmith == "buy armor"){
+                        var weaponBuy = confirm("Are you sure you want to buy this Armor?");
+                            if(weaponBuy){
+                                inventory.armor ++;
+                                alert("You now have "+inventory.armor+" sets of armor!");
+                                inventory.coins = inventory.coins - 20;
+                                alert("You now have "+inventory.coins+" coins left.");
+                                KeepSmith();
+                            }
+                    }
+                    else if(keepSmith == "arrows" || "buy arrows"){
+                        while(!confirm("Are you sure you want to purchase "+buyArrows+" for 1 coin per arrow?")){
+                            buyArrows = propmt("How many arrows do you want to buy?");
+                        }
+                        for(i = 1; i <= buyArrows; i++){
+                            inventory.arrows ++;
+                            inventory.coins --;
+                        }
+                        alert("You have "+inventory.coins+" left");
+                        alert("You have purchest "+buyArrows+" arrows.");
+                        KeepSmith();
+                    }
+                    else if(keepSmith == "leave"){
+                        Keep();
+                    }
+                    else{
+                        KeepSmith();
+                    }
+        }
+        function KeepThrone1(){
+            var throneRoom = prompt("You walk into the throne room, and realize instantly that you barged right into the middle of a meeting. The group of five nobles is staring at you from around their map table, clearly annoyed. \n Greet them \n Apologize and leave").toLowerCase();
+            switch(throneRoom){
+                case "greet them" || "greet":
+                    MeetKeepNobles();
+                break;
+                case "apologize and leave" || "leave" || "apologize":
+                    Keep();
+                break;
+                default:
+                    alert("You panicked and ran all the way out of the keep.");
+                    KeepPathE();
+                break;
+            }
+        }
+        function Keepthrone(){
+            alert("This may or may not be broke");
+            Keep();
+        }
+        function MeetKeepNobles(){
+            castleSettings.metNobles ++;
+            alert("You walk in, and join their cirlce standing around the map table, with them still staring at you. One of the nobles shakes off his suprise and asks, 'And who might you be?', you respond saying, 'I go by "+playerName+", who might all of you be?'");
+            alert("'What might your business be here in the Castle of "+worldNames[worldName]+" be?' One noble asks, but another, friendlier looking noble steps in 'Sorry about Klein he isn't very friendly to strangers such as yourself barging into our meetings, I am Reighn the master of the Keep.'");
+            var nobleQuestions1 = prompt("'Could we ask where you got your fine armor?' Reighn asks. \n You look down realizing that your military fatigues had somehow morphed into a quite expensive looking suit of armor. \n Tell truth \n Make up story").toLowerCase();
+            switch(nobleQuestions1){
+                case "tell truth" || "truth":
+                    NobleTruths();
+                break;
+                case "make up story" || "story":
+                    NobleLies();
+                break;
+                default:
+                    alert("Could you maybe, kinda, just, possibly, use one of the options I just gave you?");
+                    MeetKeepNobles();
+                break;
+            }
+        }
+        function NobleTruths(){
+            if(castleSettings.questionAsked == 0){    
+                alert("You tell the nobles your story, how you woke up in the middle of a crossroad, and ended up walking into this castle, right into the middle of their meeting.");
+                var nobleTruth = prompt("'So you have no recollection of how you actually got here, and you can walk on the roads? This is the biggest breakthrough since the last traveler that showed up here!' \n Traveler? \n Go on").toLowerCase();
+                switch(nobleTruth){
+                    case "traveler?" || "traveler":
+                        alert("'So you haven't heard of what you are? A traveler, is one who is not from our realm of "+worldNames[worldName]+", is one who can walk the roads, and is not held in by the borders of the settlements. There used to be many of you, but we haven't heard from any travelers in over 200 years. At the moment you're the only living traveler we have heard of.'");
+                        castleSettings.questionAsked ++;
+                        NobleTruths();
+                    break;
+                    case "go on":
+                    castleSettings.questionAsked ++;
+                    NobleTruths(); 
+                    break;   
+                    default:
+                        alert("RESTARTING FUNCTION BECAUSE YOU CAN'T TYPE IN A COMMAND THAT I GAVE YOU");
+                        NobleTruths();
+                    break; 
+                }
+            }
+            else{
+                alert("'You should go make yourself at home, there are some houses behind the south eastern guardhouse. The empty one can be yours. We need to discuss this.' You take the hint to leave, and go straight to your new house.");
+                castleSettings.hasHouse ++;
+                CastlePCHouse();
+            }    
+        }
+        function NobleLies(){
+            alert("I haven't programmed that path yet.");
+            NobleTruths();
+        }
+        function CastlePCHouse(){
+            alert("Outfitting this would take a looongg while, so I just made it exist for now so I can come back to this \n Sorry");
+            CastleHousing1();
+        }
     }
 }
                 /* old broken function
