@@ -57,8 +57,8 @@ function Game(){
     
     var worldNames = ["Flehr","Flahr","Flohr"]
 
-    document.write("This game is a WIP, it is imcomplete, so please be understanding if there are areas or commands that do not work.");
-    alert("At the moment the Castle area is the only area that is coded, so go in the other directions at your own risk.")
+    document.write("This game is a WIP, it is imcomplete.");
+    alert("At the moment the Castle area (Go west) is the only area that is coded, so go in the other directions at your own risk.")
     var playerName = prompt("What is your name?");
     while(!confirm("Are you sure you want your name to be "+playerName+"?")){
         playerName = prompt("Then what do you want your name to be?");
