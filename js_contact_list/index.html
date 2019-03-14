@@ -31,6 +31,9 @@
                 <li class="collection-item">
                     <a href="#">Annyston</a>
                 </li>
+                <li class="collection-item">
+                    <a href="#">Ayyyy</a>
+                </li>
                 <li class="collection-header">
                     <h5>B</h5>
                 </li>
@@ -62,7 +65,7 @@
                     <a href="#">Cyberht</a>
                 </li>
                 <li class="collection-header">
-                    <a href="#">D</a>
+                    <h5>D</h5>
                 </li>
                 <li class="collection-item">
                     <a href="#">Darpen</a>
@@ -79,17 +82,23 @@
             </ul>
         </div>
         <script>
+        // Get input
         let filterInput = document.getElementById('filterInput');
+        // Add event listener
         filterInput.addEventListener('keyup',filterNames);
 
         function filterNames(){
-            let filterValue = documetn.getElementById('filterInput').value.toUpperCase();
-
-            let ul = documetn.getElementById('names');
+            // Get input value
+            let filterValue = document.getElementById('filterInput').value.toUpperCase();
+            // Get names ul
+            let ul = document.getElementById('names');
+            // Get list from ul
             let li = ul.querySelectorAll('li.collection-item');
 
+            // Loop though collection-items list
             for(let i = 0;i < li.length;i++){
                 let a = li[i].getElementsByTagName('a')[0];
+                // If matched
                 if(a.innerHTML.toUpperCase().indexOf(filterValue) > -1){
                     li[i].style.display = '';
                 } else {
