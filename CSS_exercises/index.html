@@ -5,50 +5,85 @@
 
         <style type="text/css">
             body{
-                background-color:darkslategray;
+                animation:5000ms ease-in-out infinite back;
             }
             h1{
                 color:cyan;
                 font-family: Georgia, 'Times New Roman', Times, serif;
                 font-size: 300%;
-                margin-top:5px;
-                margin-right:0;
-                margin-bottom:0;
-                margin-left:10px;
+                position:absolute;
+                left:15%;
+                top: 5%
             }
             h3{
                 color:aquamarine;
                 font-family: Arial, Helvetica, sans-serif;
                 font-size: 300%;
-                margin:5px 0 0 10px;
+                position: absolute;
+                left: 15%;
+                top: 10%
             }
             div#box{
                 background-color:black;
-                width:200px;
-                height:200px;
+                width:50px;
+                height:50px;
                 position:absolute;
-                left:300px;
-                top:300px;
+                left:50%;
+                top:25%;
             }
             div#circle{
                 background-color:orangered;
-                width:150px;
-                height:150px;
+                width:50px;
+                height:50px;
                 border-radius: 100%;
                 position:absolute;
-                left:325px;
-                top:325px;
+                left: 50%;
+                top:22.5%;
+            }
+            .triangle{
+                scale: 100%;
+                width: 0px;
+                height: 0px;
+                border-bottom: solid 30px rgb(200,30,50);
+                border-left: solid 30px transparent;
+                border-right: solid 30px transparent;
+                position:absolute;
+                left:50%;
+                top:20%;
+            }
+            @keyframes back{
+                0% {background-color: green}
+                25% {background-color: darkcyan}
+                50% {background-color: lightseagreen}
+                75% {background-color: darkcyan}
+                100% {background-color: green}
+            }
+            img#truump{
+                animation:5000ms ease-in-out infinite truumpfloat;
+                display:block;
+                width: auto;
+                height: auto;
+                border:inset darkblue 3px;
+                box-shadow: 3px 3px 1px black;
+                position:absolute;
+                z-index: 1;
+            }
+            @keyframes truumpfloat{
+                0% {top:0%;left:0%;}
+                25% {top:0%;left:87%;}
+                50% {top:70%;left:87%;}
+                75% {top:70%;left:0%;}
+                100% {top:0%;left:0%;}
+
             }
         </style>
     </head>
     <body>
-<<<<<<< Updated upstream
-        <h1">Broken css</h1>
-=======
         <h1>REEEEEEEEEEEEEEEEEEEE</h1>
->>>>>>> Stashed changes
         <h3>HAHAHAHHAHHAHAHAHAHA</h3>
         <div id="box"></div>
         <div id="circle"></div>
+        <div class="triangle"></div>
+        <img src="ok.png" id="truump">
     </body>
 </html>
