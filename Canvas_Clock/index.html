@@ -8,25 +8,30 @@
                 background-color: #333;
             }
             20% {
-                background-color: aqua;
+                background-color: darkcyan;
             }
             40% {
-                background-color: aquamarine;
+                background-color: darkslateblue;
             }
             60% {
-                background-color: blueviolet;
+                background-color: darkolivegreen;
             }
             80% {
-                background-color: blue;
+                background-color: darkslategray;
             }
             100% {
                 background-color: #333;
             }
         }
+        .canvas {
+            animation-name: bgcolorchange;
+            animation-duration: 30s;
+            animation-iteration-count: infinite;
+        }
         </style>
     </head>
     <body>
-        <canvas id="canvas" width="400" height="400" style="background-color:#333"></canvas>
+        <canvas class="canvas" id="canvas" width="800" height="800" style="background-color:#333"></canvas>
 
         <script>
             var canvas = document.getElementById("canvas");
@@ -46,10 +51,10 @@
               var grad;
               ctx.beginPath();
               ctx.arc(0, 0, radius, 0, 2*Math.PI);
-              ctx.fillStyle = 'white';
+              ctx.fillStyle = '#333';
               ctx.fill();
               grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
-              grad.addColorStop(0, '#333');
+              grad.addColorStop(0, 'white');
               grad.addColorStop(0.5, 'white');
               grad.addColorStop(1, '#333');
               ctx.strokeStyle = grad;
@@ -57,7 +62,7 @@
               ctx.stroke();
               ctx.beginPath();
               ctx.arc(0, 0, radius*0.1, 0, 2*Math.PI);
-              ctx.fillStyle = '#333';
+              ctx.fillStyle = 'white';
               ctx.fill();
             }
 
