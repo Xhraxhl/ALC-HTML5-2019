@@ -3,11 +3,11 @@
 html,body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
     margin: 0;
     padding: 0;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'PoetsenOne-Regular' , 'Allerta Stencil' , sans-serif, serif;
 }
 body {
-    background-color: #333;
-    color: #fff;
+    background-color: white;
+    color: #7cb72a;
 }
 div#container {
     width: 1200px;
@@ -21,24 +21,41 @@ header {
     background-color: #333;
 }
 header h1 {
-    color: aquamarine;
-    font-size: 17em;
+    color: #7cb72a;
+    font-size: 10em;
 }
 div#content {
     width: 96.65%;
     padding: 20px;
     background-color: black;
-    font-size: 4em;
-    color: red;
+    font-size: 2em;
+    color: #7cb72a;
 }
 nav#nav {
     background-color: dimgrey;
-    font-size: 1.55em;
+    font-size: 2em;
+}
+nav ul {
+    list-style: none;
+}
+nav ul li {
+    float: left;
+    padding: 5px 15px;
+}
+nav ul li a {
+    color: #7cb72a;
+    text-decoration: none;
+}
+nav ul li a:hover {
+    color: #fff;
 }
 footer {
     width: 100%;
     height: 200px;
-    background-color: darkgray;
-    font-size: 4.9em;
-    color: aquamarine;
+    background-color: gray;
+    font-size: 2em;
+    color: #7cb72a;
+}
+div.keepOpen {
+    clear: both;
 }
