@@ -6,13 +6,13 @@ html,body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
     font-family: 'PoetsenOne-Regular' , 'Allerta Stencil' , sans-serif, serif;
 }
 body {
-    background-color: white;
+    background-color: #888;
     color: #7cb72a;
 }
 div#container {
     text-align: center;
     width: 100%;
-    border: 3px solid cadetblue;
+    border: 3px solid #7cb72a;
 }
 header {
     text-align: center;
@@ -34,8 +34,33 @@ div#content {
 img#Image {
     display: block;
     margin: auto;
+    background-color: #888;
 }
-nav {
+.icon-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    overflow: auto;
+}
+.icon-bar a {
+    float:left;
+    text-decoration: none;
+    width: 20%;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: #7cb72a;
+    font-size: 36px;
+}
+.icon-bar a:hover {
+    color: #fff;
+    background-color: #7cb72a;
+}
+.active {
+    background-color: #888;
+}
+/* nav {
     width: 100%; 
     background-color: dimgrey;
     font-size: 2em;
@@ -80,4 +105,4 @@ div.keepOpen {
         float: none;
         text-align: center;
     }
-}
+} */
