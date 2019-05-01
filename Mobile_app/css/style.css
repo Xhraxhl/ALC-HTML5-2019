@@ -6,13 +6,14 @@ html,body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
     font-family: 'PoetsenOne-Regular' , 'Allerta Stencil' , sans-serif, serif;
 }
 body {
-    background-color: #888;
+    background-color: #888  ;
     color: #7cb72a;
 }
 div#container {
     text-align: center;
     width: 100%;
-    border: 3px solid #7cb72a;
+    border-top: 3px solid #7cb72a;
+    border-bottom: 3px solid #7cb72a;
 }
 header {
     text-align: center;
@@ -34,10 +35,11 @@ div#content {
 img#Image {
     display: block;
     margin: auto;
+    width: 10%;
     background-color: #888;
 }
 .icon-bar {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
@@ -47,7 +49,7 @@ img#Image {
 .icon-bar a {
     float:left;
     text-decoration: none;
-    width: 20%;
+    width: 16.6%;
     text-align: center;
     transition: all 0.3s ease;
     color: #7cb72a;
