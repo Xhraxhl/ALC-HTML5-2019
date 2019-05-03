@@ -6,6 +6,7 @@ html,body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
     font-family: 'PoetsenOne-Regular' , 'Allerta Stencil' , sans-serif, serif;
 }
 body {
+    border-top: 3px solid #7cb72a;
     background-color: #888  ;
     color: #7cb72a;
 }
@@ -20,10 +21,10 @@ header {
     width: 100%;
     background-color: #333;
 }
-header h1 {
+header h1,h2 {
     text-align: center;
     color: #7cb72a;
-    font-size: 10em;
+    font-size: 5em;
 }
 div#content {
     text-align: center;
@@ -53,7 +54,7 @@ img#Image {
     text-align: center;
     transition: all 0.3s ease;
     color: #7cb72a;
-    font-size: 36px;
+    font-size: 42px;
 }
 .icon-bar a:hover {
     color: #fff;
@@ -61,6 +62,36 @@ img#Image {
 }
 .active {
     background-color: #888;
+}
+/* Products and search bar */
+.products {
+    margin: auto;
+    position: absolute;
+    width: 100%;
+    background-color: #888;
+    overflow: auto;
+}
+.products a {
+    float: left;
+    text-decoration: none;
+    width: 40%;
+    padding-top: 5%;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    transition: all 0.3s ease;
+    color: #7cb72a;
+    font-size: 36px;
+}
+.products a img {
+    display: block;
+    width: 20%;
+}
+.caption {
+    vertical-align: bottom;
+    display: block;
+    text-align: center;
+    width: 100%
 }
 /* nav {
     width: 100%; 
