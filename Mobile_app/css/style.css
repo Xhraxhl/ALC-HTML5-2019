@@ -9,6 +9,11 @@ body {
     background-color: #888  ;
     color: #7cb72a;
 }
+p {
+    color: #333;
+    font-size: 2em;
+    padding-top: 25px;
+}
 div#container {
     text-align: center;
     width: 100%;
