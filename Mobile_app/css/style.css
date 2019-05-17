@@ -1,6 +1,7 @@
 /* Generic Stylesheet for Mobile App */
 /* Reset */
 html,body,div,p,ul,ol,li,h1,h2,h3,h4,h5,h6 {
+    size: 100%;
     margin: 0;
     padding: 0;
     font-family: 'PoetsenOne-Regular' , 'Allerta Stencil' , sans-serif, serif;
@@ -15,6 +16,7 @@ p {
     padding-top: 25px;
 }
 div#container {
+    overflow: auto;
     text-align: center;
     width: 100%;
 }
@@ -34,6 +36,7 @@ h3 {
     border-bottom: 6px solid #7cb72a;
 }
 div#content {
+    overflow: auto;
     text-align: center;
     width: 100%;
     background-color: #888;
@@ -44,8 +47,14 @@ div#content {
 img#Image {
     display: block;
     margin: auto;
-    width: 10%;
+    width: 100px;
     background-color: #888;
+}
+div#space {
+    width: 100%;
+    background-color: #888;
+    margin: auto;
+    padding: 25px;
 }
 .icon-bar {
     position: fixed;
@@ -81,6 +90,7 @@ img#Image {
     overflow: auto;
 }
 .products a {
+    margin-bottom: 10%;
     text-align: center;
     float: left;
     text-decoration: none;
@@ -141,6 +151,9 @@ input[type=submit]:hover {
         transition: all 0.3s ease;
         color: #7cb72a;
         font-size: 36px;
+    }
+    legend, input {
+        width: 90%;
     }
 }
 /* nav {
